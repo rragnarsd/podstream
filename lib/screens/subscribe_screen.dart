@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:podstream/local_data/subscribe_data.dart';
+import 'package:podstream/screens/home_screen.dart';
 import 'package:podstream/screens/interest_screen.dart';
 
 class SubscribeScreen extends StatelessWidget {
@@ -7,21 +9,33 @@ class SubscribeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Subscribe Authors')),
+      appBar: AppBar(
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        title: const Text(
+          'Subscribe Authors',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 18),
+          color: Colors.black,
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
       body: const Padding(
         padding: EdgeInsets.all(16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'Subscribe to your favorite authors and get the latest podcasts.',
+              'Subscribe to your favorite authors and get the latest podcasts. You can subscribe and unsubscribe at any time.',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             ),
             SizedBox(height: 12),
             SubScribeList(),
             OnboardingButtonBar(
               continueText: 'Continue',
-              //TODO add continueWidget
-              continueWidget: Text('hi'),
+              continueWidget: HomeScreen(),
             ),
             SizedBox(height: 24),
           ],
@@ -122,58 +136,3 @@ class _SubScribeListState extends State<SubScribeList> {
     );
   }
 }
-
-class SubscribeAuthorData {
-  final String podCastName;
-  final String podCastQty;
-  final String image;
-
-  SubscribeAuthorData({
-    required this.podCastName,
-    required this.podCastQty,
-    required this.image,
-  });
-}
-
-List<SubscribeAuthorData> subscribeAuthorData = [
-  SubscribeAuthorData(
-    podCastName: 'Podcast 1',
-    podCastQty: '10',
-    image: 'assets/avatar1.jpg',
-  ),
-  SubscribeAuthorData(
-    podCastName: 'Podcast 2',
-    podCastQty: '100',
-    image: 'assets/avatar2.jpg',
-  ),
-  SubscribeAuthorData(
-    podCastName: 'Podcast 3',
-    podCastQty: '160',
-    image: 'assets/avatar3.jpg',
-  ),
-  SubscribeAuthorData(
-    podCastName: 'Podcast 4',
-    podCastQty: '1000',
-    image: 'assets/avatar4.jpg',
-  ),
-  SubscribeAuthorData(
-    podCastName: 'Podcast 5',
-    podCastQty: '10000',
-    image: 'assets/avatar5.jpg',
-  ),
-  SubscribeAuthorData(
-    podCastName: 'Podcast 6',
-    podCastQty: '90',
-    image: 'assets/avatar6.jpg',
-  ),
-  SubscribeAuthorData(
-    podCastName: 'Podcast 7',
-    podCastQty: '100',
-    image: 'assets/avatar7.jpg',
-  ),
-  SubscribeAuthorData(
-    podCastName: 'Podcast 2',
-    podCastQty: '100',
-    image: 'assets/avatar2.jpg',
-  ),
-];

@@ -24,7 +24,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   cupertino_icons: ^1.0.8
   carousel_slider: ^5.0.0
   cached_network_image: ^3.4.1
