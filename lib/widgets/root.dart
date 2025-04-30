@@ -24,15 +24,18 @@ class _RootState extends State<Root> {
         onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, size: 20),
+            icon: Icon(Icons.home_outlined, size: 20),
+            activeIcon: Icon(Icons.home, size: 20),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search, size: 20),
+            icon: Icon(Icons.search_outlined, size: 20),
+            activeIcon: Icon(Icons.search, size: 20),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person, size: 20),
+            icon: Icon(Icons.person_outlined, size: 20),
+            activeIcon: Icon(Icons.person, size: 20),
             label: 'Profile',
           ),
         ],

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:podstream/local_data/subscribe_data.dart';
 import 'package:podstream/screens/home_screen.dart';
 import 'package:podstream/screens/interest_screen.dart';
+import 'package:podstream/widgets/spacers.dart';
 
 class SubscribeScreen extends StatelessWidget {
   const SubscribeScreen({super.key});
@@ -15,7 +16,7 @@ class SubscribeScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: const Text(
           'Subscribe Authors',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 18),
@@ -32,13 +33,13 @@ class SubscribeScreen extends StatelessWidget {
               'Subscribe to your favorite authors and get the latest podcasts. You can subscribe and unsubscribe at any time.',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             ),
-            SizedBox(height: 12),
+            AppSpacer(height: 12),
             SubScribeList(),
             OnboardingButtonBar(
               continueText: 'Continue',
               continueWidget: HomeScreen(),
             ),
-            SizedBox(height: 24),
+            AppSpacer(height: 24),
           ],
         ),
       ),
@@ -88,7 +89,7 @@ class _SubScribeListState extends State<SubScribeList> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    const AppSpacer(width: 12),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

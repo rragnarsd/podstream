@@ -1,3 +1,5 @@
+import 'package:podstream/utils/pod_assets.dart';
+
 class SubscribeAuthorData {
   final String podCastName;
   final String podCastQty;
@@ -20,7 +22,7 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   SubscribeAuthorData(
     podCastName: 'TechBytes',
     podCastQty: '10',
-    image: 'assets/avatar1.jpg',
+    image: AppAssets.avatar1,
     podcastHost: 'Sarah Chen',
     podcastDescription:
         'Bite-sized tech news and trends in 30 minutes or less.',
@@ -29,7 +31,7 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   SubscribeAuthorData(
     podCastName: 'ZenCast',
     podCastQty: '100',
-    image: 'assets/avatar2.jpg',
+    image: AppAssets.avatar2,
     podcastHost: 'Dr. Michael Roberts',
     podcastDescription: 'Quick mindfulness breaks for your busy day.',
     podcastTime: '32:15',
@@ -37,7 +39,7 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   SubscribeAuthorData(
     podCastName: 'FlavorLab',
     podCastQty: '160',
-    image: 'assets/avatar3.jpg',
+    image: AppAssets.avatar3,
     podcastHost: 'Chef Maria Gonzalez',
     podcastDescription: 'Global flavors, simple recipes, big taste.',
     podcastTime: '58:45',
@@ -45,7 +47,7 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   SubscribeAuthorData(
     podCastName: 'SciFi',
     podCastQty: '1000',
-    image: 'assets/avatar4.jpg',
+    image: AppAssets.avatar4,
     podcastHost: 'Prof. James Wilson',
     podcastDescription: 'Science made simple, one discovery at a time.',
     podcastTime: '52:20',
@@ -53,7 +55,7 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   SubscribeAuthorData(
     podCastName: 'BizBoost',
     podCastQty: '10000',
-    image: 'assets/avatar5.jpg',
+    image: AppAssets.avatar5,
     podcastHost: 'Alex Thompson',
     podcastDescription: 'Smart business tips in 15 minutes or less.',
     podcastTime: '49:10',
@@ -61,7 +63,7 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   SubscribeAuthorData(
     podCastName: 'TimeCapsule',
     podCastQty: '90',
-    image: 'assets/avatar6.jpg',
+    image: AppAssets.avatar6,
     podcastHost: 'Dr. Emily Parker',
     podcastDescription: 'History\'s greatest stories, told in minutes.',
     podcastTime: '55:40',
@@ -69,7 +71,7 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   SubscribeAuthorData(
     podCastName: 'FitCast',
     podCastQty: '100',
-    image: 'assets/avatar7.jpg',
+    image: AppAssets.avatar7,
     podcastHost: 'Coach David Miller',
     podcastDescription: 'Quick workouts, lasting results.',
     podcastTime: '38:25',
@@ -77,7 +79,7 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   SubscribeAuthorData(
     podCastName: 'ArtFlow',
     podCastQty: '100',
-    image: 'assets/avatar2.jpg',
+    image: AppAssets.avatar2,
     podcastHost: 'Lisa Chen',
     podcastDescription: 'Creative sparks for your daily inspiration.',
     podcastTime: '43:50',

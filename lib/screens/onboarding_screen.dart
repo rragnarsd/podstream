@@ -2,7 +2,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:podstream/local_data/onboarding_data.dart';
+import 'package:podstream/widgets/spacers.dart';
 
+//TODO - Add SharedPrefs
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -123,7 +125,7 @@ class OnboardingInfo extends StatelessWidget {
                           ),
                         ),
               ),
-              const SizedBox(height: 8),
+              const AppSpacer(height: 8),
               Text(
                 page.title,
                 style: const TextStyle(
@@ -132,7 +134,7 @@ class OnboardingInfo extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              const SizedBox(height: 16),
+              const AppSpacer(height: 16),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
@@ -141,12 +143,12 @@ class OnboardingInfo extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(height: 24),
+              const AppSpacer(height: 24),
               OnboardingDots(
                 carouselController: carouselController,
                 activePage: activePage,
               ),
-              const SizedBox(height: 36),
+              const AppSpacer(height: 36),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton.icon(

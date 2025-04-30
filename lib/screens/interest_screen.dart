@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:podstream/local_data/interest_data.dart';
 import 'package:podstream/screens/subscribe_screen.dart';
+import 'package:podstream/widgets/spacers.dart';
 
 class InterestScreen extends StatefulWidget {
   const InterestScreen({super.key});
@@ -29,7 +30,7 @@ class _InterestScreenState extends State<InterestScreen> {
       appBar: AppBar(
         title: const Text(
           'Choose your interests',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
       ),
       body: Padding(
@@ -40,7 +41,7 @@ class _InterestScreenState extends State<InterestScreen> {
               'Choose your interest and get the best podcast for you. You can choose multiple interests.',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             ),
-            const SizedBox(height: 24),
+            const AppSpacer(height: 24),
             Wrap(
               spacing: 16,
               runSpacing: 6,
@@ -79,7 +80,7 @@ class _InterestScreenState extends State<InterestScreen> {
               continueText: 'Continue',
               continueWidget: SubscribeScreen(),
             ),
-            const SizedBox(height: 24),
+            const AppSpacer(height: 24),
           ],
         ),
       ),
@@ -127,7 +128,7 @@ class OnboardingButtonBar extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 12),
+          const AppSpacer(width: 12),
           Expanded(
             child: Container(
               width: double.infinity,
@@ -143,7 +144,7 @@ class OnboardingButtonBar extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),
-                //TODO
+
                 onPressed: () => context.push(continueWidget.toString()),
                 child: const Text(
                   'Continue',

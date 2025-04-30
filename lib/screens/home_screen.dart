@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:podstream/local_data/subscribe_data.dart';
+import 'package:podstream/utils/pod_assets.dart';
 import 'package:podstream/widgets/spacers.dart';
 import 'package:podstream/widgets/text_headers.dart';
 
@@ -14,7 +15,7 @@ class HomeScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: const Text(
           'PodStream',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
       ),
       body: const CustomScrollView(
@@ -114,11 +115,7 @@ class _TrendingItem extends StatelessWidget {
         Positioned(
           right: 0,
           bottom: 0,
-          child: Image.asset(
-            'assets/avatar8.png',
-            height: 200,
-            fit: BoxFit.cover,
-          ),
+          child: Image.asset(AppAssets.avatar8, height: 200, fit: BoxFit.cover),
         ),
       ],
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:podstream/widgets/spacers.dart';
 
 class OnboardingButtonBar extends StatelessWidget {
   const OnboardingButtonBar({
@@ -18,18 +19,15 @@ class OnboardingButtonBar extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(width: 3),
-              ),
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   backgroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4),
+                    side: const BorderSide(width: 3),
                   ),
                 ),
                 onPressed: () => context.pop(),
@@ -40,20 +38,17 @@ class OnboardingButtonBar extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 12),
+          const AppSpacer(width: 12),
           Expanded(
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(width: 3),
-              ),
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   backgroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4),
+                    side: const BorderSide(width: 3),
                   ),
                 ),
                 onPressed: () => context.push(continueWidget.toString()),

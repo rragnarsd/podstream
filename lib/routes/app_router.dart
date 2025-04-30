@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:podstream/screens/home_screen.dart';
+import 'package:podstream/screens/premium_screen.dart';
 import 'package:podstream/screens/search_screen.dart';
 import 'package:podstream/screens/profile_screen.dart';
 import 'package:podstream/widgets/root.dart';
@@ -32,6 +33,13 @@ final GoRouter router = GoRouter(
           name: 'profile',
           builder: (BuildContext context, GoRouterState state) {
             return const ProfileScreen();
+          },
+        ),
+        GoRoute(
+          path: '/premium',
+          name: 'premium',
+          builder: (BuildContext context, GoRouterState state) {
+            return const PremiumScreen();
           },
         ),
       ],

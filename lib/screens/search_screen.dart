@@ -15,9 +15,8 @@ class SearchScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: const Text(
           'Search Podcasts',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
-
         actions: [
           IconButton(
             icon: const Icon(Icons.filter_list, size: 26),
@@ -88,7 +87,7 @@ class CategoryList extends StatelessWidget {
             final category = categories[index];
             return CategoryItem(category: category);
           },
-          separatorBuilder: (context, index) => const SizedBox(width: 12),
+          separatorBuilder: (context, index) => const AppSpacer(width: 12),
         ),
       ),
     );
@@ -121,7 +120,7 @@ class CategoryItem extends StatelessWidget {
                 color: category.textColor,
               ),
             ),
-            const SizedBox(width: 8),
+            const AppSpacer(width: 8),
             Text(
               '${category.podcastCount} Podcasts',
               style: TextStyle(
@@ -184,7 +183,7 @@ class PodCastItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 12),
+                const AppSpacer(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -197,7 +196,7 @@ class PodCastItem extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      const AppSpacer(height: 4),
                       Text(
                         podcast.podCastName,
                         style: const TextStyle(
@@ -205,7 +204,7 @@ class PodCastItem extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      const AppSpacer(height: 4),
                       Text(
                         podcast.podcastDescription!,
                         style: const TextStyle(
@@ -215,7 +214,7 @@ class PodCastItem extends StatelessWidget {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      const SizedBox(height: 4),
+                      const AppSpacer(height: 4),
                       Text(
                         '• ${podcast.podcastTime!} min',
                         style: const TextStyle(
@@ -229,7 +228,7 @@ class PodCastItem extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 6),
+          const AppSpacer(width: 6),
           IconButton(
             style: IconButton.styleFrom(backgroundColor: Colors.redAccent),
             onPressed: () {},
