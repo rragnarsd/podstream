@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:podstream/local_data/interest_data.dart';
 import 'package:podstream/screens/subscribe_screen.dart';
 
@@ -142,12 +143,8 @@ class OnboardingButtonBar extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => continueWidget),
-                  );
-                },
+                //TODO
+                onPressed: () => context.push(continueWidget.toString()),
                 child: const Text(
                   'Continue',
                   style: TextStyle(color: Colors.black, fontSize: 16),

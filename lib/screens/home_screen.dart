@@ -1,7 +1,7 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:podstream/screens/onboarding_screen.dart';
-import 'package:podstream/screens/search_screen.dart';
+import 'package:podstream/local_data/subscribe_data.dart';
+import 'package:podstream/widgets/spacers.dart';
+import 'package:podstream/widgets/text_headers.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,51 +13,30 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         automaticallyImplyLeading: false,
         title: const Text(
-          'HomeScreen',
+          'PodStream',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 18),
-          color: Colors.black,
-          onPressed: () => Navigator.pop(context),
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, size: 20),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search, size: 20),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.library_music, size: 20),
-            label: 'Library',
-          ),
-        ],
       ),
       body: const CustomScrollView(
-        slivers: [AppSpacer(height: 12), TrendingList()],
+        slivers: [
+          SliverAppSpacer(height: 12),
+          _TrendingList(),
+          _RecommendedList(),
+          _RecentlyPlayedList(),
+        ],
       ),
     );
   }
 }
 
-class TrendingList extends StatefulWidget {
-  const TrendingList({super.key});
+class _TrendingList extends StatefulWidget {
+  const _TrendingList();
 
   @override
-  State<TrendingList> createState() => _TrendingListState();
+  State<_TrendingList> createState() => _TrendingListState();
 }
 
-class _TrendingListState extends State<TrendingList>
-    with SingleTickerProviderStateMixin {
-  final CarouselSliderController carouselController =
-      CarouselSliderController();
-  int _activePage = 0;
-
+class _TrendingListState extends State<_TrendingList> {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
@@ -71,24 +50,124 @@ class _TrendingListState extends State<TrendingList>
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
           ),
-          const SizedBox(height: 20),
-          CarouselSlider(
-            carouselController: carouselController,
-            items: List.generate(3, (_) => const TrendingItem()),
-            options: CarouselOptions(
-              height: 200,
-              aspectRatio: .8,
-              viewportFraction: 1,
-              scrollPhysics: const BouncingScrollPhysics(),
-              enlargeCenterPage: true,
+          const AppSpacer(height: 16),
+          SizedBox(
+            height: 180,
+            child: ListView.builder(
               clipBehavior: Clip.none,
-              onPageChanged: (index, _) => setState(() => _activePage = index),
+              scrollDirection: Axis.horizontal,
+              itemCount: 3,
+              itemBuilder:
+                  (context, index) => Padding(
+                    padding: EdgeInsets.only(
+                      left: index == 0 ? 16 : 0,
+                      right: 16,
+                    ),
+                    child: const _TrendingItem(),
+                  ),
             ),
           ),
-          const SizedBox(height: 18),
-          OnboardingDots(
-            carouselController: carouselController,
-            activePage: _activePage,
+          const AppSpacer(height: 32),
+        ],
+      ),
+    );
+  }
+}
+
+class _TrendingItem extends StatelessWidget {
+  const _TrendingItem();
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          width: 300,
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: const Color(0xFFD7F0E3),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(width: 3),
+          ),
+          child: const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Creative Chronicles:\nArtist's Journey",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
+              AppSpacer(height: 4),
+              Text(
+                'Diana Rose',
+                style: TextStyle(fontSize: 14, color: Colors.grey),
+              ),
+              AppSpacer(height: 12),
+              _PlayButton(duration: '38 min'),
+            ],
+          ),
+        ),
+        Positioned(
+          right: 0,
+          bottom: 0,
+          child: Image.asset(
+            'assets/avatar8.png',
+            height: 200,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _PlayButton extends StatelessWidget {
+  const _PlayButton({required this.duration});
+
+  final String duration;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.white.withValues(alpha: .2),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(6),
+            decoration: const BoxDecoration(
+              color: Colors.black,
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              Icons.play_arrow,
+              color: Colors.white,
+              size: 16.0,
+            ),
+          ),
+          const AppSpacer(width: 8),
+          Text(
+            duration,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+            ),
           ),
         ],
       ),
@@ -96,71 +175,198 @@ class _TrendingListState extends State<TrendingList>
   }
 }
 
-class TrendingItem extends StatelessWidget {
-  const TrendingItem({super.key});
+class _RecommendedList extends StatelessWidget {
+  const _RecommendedList();
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: const Color(0xFFD7F0E3),
-              borderRadius: BorderRadius.circular(20),
+    return SliverToBoxAdapter(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const AppTextHeader(title: 'Recommended for you'),
+          const AppSpacer(height: 16),
+          SizedBox(
+            height: 300,
+            child: ListView.separated(
+              itemCount: subscribeAuthorData.length,
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) {
+                final subAuthorData = subscribeAuthorData[index];
+                return _RecommendedItem(subAuthorData: subAuthorData);
+              },
+              separatorBuilder: (context, index) => const AppSpacer(width: 16),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _RecommendedItem extends StatelessWidget {
+  const _RecommendedItem({required this.subAuthorData});
+
+  final SubscribeAuthorData subAuthorData;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: 220,
+          height: 200,
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: const Color(0xFFD7F0E3),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(width: 3),
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage(subAuthorData.image),
+            ),
+          ),
+        ),
+        const AppSpacer(height: 12),
+        Text(
+          subAuthorData.podcastHost ?? '',
+          style: const TextStyle(fontSize: 14),
+        ),
+        const AppSpacer(height: 4),
+        SizedBox(
+          width: 220,
+          child: Text(
+            subAuthorData.podcastDescription ?? '',
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _RecentlyPlayedList extends StatelessWidget {
+  const _RecentlyPlayedList();
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const AppSpacer(height: 8),
+          const AppTextHeader(title: 'Recently played'),
+          const AppSpacer(height: 4),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: subscribeAuthorData.length,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            itemBuilder: (context, index) {
+              final podcast = subscribeAuthorData[index];
+              return _RecentlyPlayedItem(podcast: podcast);
+            },
+          ),
+          const AppSpacer(height: 32),
+        ],
+      ),
+    );
+  }
+}
+
+class _RecentlyPlayedItem extends StatelessWidget {
+  const _RecentlyPlayedItem({required this.podcast});
+
+  final SubscribeAuthorData podcast;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Row(
               children: [
-                const Text(
-                  "Creative Chronicles:\nArtist's Journey",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(width: 3),
                   ),
-                ),
-                const SizedBox(height: 8),
-                const Text(
-                  'Diana Rose',
-                  style: TextStyle(fontSize: 14, color: Colors.grey),
-                ),
-                const SizedBox(height: 12),
-                ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(4),
+                    child: Image.asset(
+                      podcast.image,
+                      height: 100,
+                      width: 100,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  onPressed: () {},
-                  icon: const Icon(Icons.play_arrow, size: 20),
-                  label: const Text('38 min'),
+                ),
+                const AppSpacer(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: 4,
+                    children: [
+                      Text(
+                        podcast.podcastHost!,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+
+                      Text(
+                        podcast.podCastName,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+
+                      Text(
+                        podcast.podcastDescription!,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+
+                      Text(
+                        '• ${podcast.podcastTime!} min',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-        ),
-        Positioned(
-          right: 24,
-          bottom: 0,
-          child: Image.asset(
-            'assets/avatar8.png',
-            height: 240,
-            width: 120,
-            fit: BoxFit.cover,
+          const AppSpacer(width: 6),
+          IconButton(
+            style: IconButton.styleFrom(backgroundColor: Colors.redAccent),
+            onPressed: () {},
+            icon: const Icon(Icons.play_arrow, color: Colors.white),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

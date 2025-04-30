@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:podstream/local_data/onboarding_data.dart';
-import 'package:podstream/screens/interest_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -54,19 +54,11 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     );
   }
 
-  void _handleSkip() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const InterestScreen()),
-    );
-  }
+  void _handleSkip() => context.pushReplacement('/interest-screen');
 
   void _handleNext() {
     if (_activePage == onboardingData.length - 1) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const InterestScreen()),
-      );
+      context.pushReplacement('/interest-screen');
     } else {
       carouselController.animateToPage(_activePage + 1);
     }

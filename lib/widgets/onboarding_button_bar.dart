@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class OnboardingButtonBar extends StatelessWidget {
   const OnboardingButtonBar({
@@ -31,7 +32,7 @@ class OnboardingButtonBar extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => context.pop(),
                 child: const Text(
                   'Skip',
                   style: TextStyle(color: Colors.black, fontSize: 16),
@@ -55,12 +56,7 @@ class OnboardingButtonBar extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => continueWidget),
-                  );
-                },
+                onPressed: () => context.push(continueWidget.toString()),
                 child: Text(
                   continueText,
                   style: const TextStyle(color: Colors.black, fontSize: 16),

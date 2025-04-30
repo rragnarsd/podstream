@@ -1,5 +1,19 @@
 import 'package:flutter/material.dart';
 
+class InterestData {
+  final String interest;
+  final bool isSelected;
+  final Color color;
+  final Color textColor;
+
+  InterestData({
+    required this.interest,
+    required this.isSelected,
+    required this.color,
+    required this.textColor,
+  });
+}
+
 List<InterestData> interests = [
   InterestData(
     interest: 'Technology',
@@ -116,17 +130,3 @@ List<InterestData> interests = [
     textColor: Colors.black,
   ),
 ];
-
-class InterestData {
-  final String interest;
-  final bool isSelected;
-  final Color color;
-  final Color textColor;
-
-  InterestData({
-    required this.interest,
-    required this.isSelected,
-    required this.color,
-    required this.textColor,
-  });
-}

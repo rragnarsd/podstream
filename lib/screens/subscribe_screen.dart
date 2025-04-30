@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:podstream/local_data/subscribe_data.dart';
 import 'package:podstream/screens/home_screen.dart';
 import 'package:podstream/screens/interest_screen.dart';
@@ -19,7 +20,7 @@ class SubscribeScreen extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 18),
           color: Colors.black,
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => context.pop(),
         ),
       ),
       body: const Padding(
