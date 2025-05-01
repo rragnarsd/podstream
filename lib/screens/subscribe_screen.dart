@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:podstream/local_data/subscribe_data.dart';
-import 'package:podstream/screens/home_screen.dart';
 import 'package:podstream/screens/interest_screen.dart';
 import 'package:podstream/utils/pod_assets.dart';
 import 'package:podstream/widgets/spacers.dart';
@@ -14,35 +12,32 @@ class SubscribeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        leading: Image.asset(AppAssets.logo),
+        leadingWidth: 100,
         automaticallyImplyLeading: false,
         title: const Text(
           AppAssets.subscribeText1,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 18),
-          color: Colors.black,
-          onPressed: () => context.pop(),
-        ),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
+      body: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Text(
               AppAssets.subscribeText2,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             ),
-            AppSpacer(height: 12),
-            SubScribeList(),
-            OnboardingButtonBar(
-              continueText: AppAssets.continueText,
-              continueWidget: HomeScreen(),
-            ),
-            AppSpacer(height: 24),
-          ],
-        ),
+          ),
+          AppSpacer(height: 12),
+          SubScribeList(),
+          OnboardingButtonBar(
+            continueText: AppAssets.continueText,
+            routePath: '/',
+          ),
+          AppSpacer(height: 24),
+        ],
       ),
     );
   }
@@ -66,10 +61,12 @@ class _SubScribeListState extends State<SubScribeList> {
     return Expanded(
       child: ListView.builder(
         itemCount: subscribeAuthorData.length,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
           final authorData = subscribeAuthorData[index];
           return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12),
+            padding: const EdgeInsets.symmetric(vertical: 6),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -102,7 +99,7 @@ class _SubScribeListState extends State<SubScribeList> {
                           ),
                         ),
                         Text(
-                          '${authorData.podCastQty} Podcasts',
+                          authorData.podCastQty,
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w800,
@@ -116,7 +113,7 @@ class _SubScribeListState extends State<SubScribeList> {
                 IconButton(
                   style: IconButton.styleFrom(
                     backgroundColor:
-                        isSelectedList[index] ? Colors.redAccent : Colors.white,
+                        isSelectedList[index] ? Colors.teal : Colors.white,
                     shape: CircleBorder(
                       side: BorderSide(width: isSelectedList[index] ? 0 : 3),
                     ),

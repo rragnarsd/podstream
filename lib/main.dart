@@ -6,20 +6,21 @@ void main() {
   runApp(const MyApp());
 }
 
+//TODO - Add logo on splash screen
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'PodStream',
+      title: 'Podstream',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         textTheme: GoogleFonts.latoTextTheme(
           Theme.of(context).textTheme.apply(
-            bodyColor: Colors.black,
-            displayColor: Colors.black,
+            bodyColor: const Color(0xff2d2d2d),
+            displayColor: const Color(0xff2d2d2d),
           ),
         ),
         useMaterial3: true,

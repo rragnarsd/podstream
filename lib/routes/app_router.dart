@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:podstream/screens/home_screen.dart';
 import 'package:podstream/screens/interest_screen.dart';
 import 'package:podstream/screens/onboarding_screen.dart';
+import 'package:podstream/screens/podcast_screen.dart';
 import 'package:podstream/screens/premium_screen.dart';
 import 'package:podstream/screens/search_screen.dart';
 import 'package:podstream/screens/profile_screen.dart';
@@ -26,22 +27,20 @@ final GoRouter router = GoRouter(
       builder: (BuildContext context, GoRouterState state) {
         return const OnboardingScreen();
       },
-      routes: [
-        GoRoute(
-          path: 'interests',
-          name: 'interests',
-          builder: (BuildContext context, GoRouterState state) {
-            return const InterestScreen();
-          },
-        ),
-        GoRoute(
-          path: 'subscribe',
-          name: 'subscribe',
-          builder: (BuildContext context, GoRouterState state) {
-            return const SubscribeScreen();
-          },
-        ),
-      ],
+    ),
+    GoRoute(
+      path: '/onboarding/interests',
+      name: 'interests',
+      builder: (BuildContext context, GoRouterState state) {
+        return const InterestScreen();
+      },
+    ),
+    GoRoute(
+      path: '/onboarding/subscribe',
+      name: 'subscribe',
+      builder: (BuildContext context, GoRouterState state) {
+        return const SubscribeScreen();
+      },
     ),
     ShellRoute(
       builder: (BuildContext context, GoRouterState state, Widget child) {
@@ -60,6 +59,13 @@ final GoRouter router = GoRouter(
           name: 'search',
           builder: (BuildContext context, GoRouterState state) {
             return const SearchScreen();
+          },
+        ),
+        GoRoute(
+          path: '/podcast',
+          name: 'podcast',
+          builder: (BuildContext context, GoRouterState state) {
+            return const PodcastScreen();
           },
         ),
         GoRoute(

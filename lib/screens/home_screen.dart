@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:podstream/local_data/subscribe_data.dart';
 import 'package:podstream/local_data/trending_data.dart';
 import 'package:podstream/utils/pod_assets.dart';
@@ -14,10 +15,8 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading: false,
-        title: const Text(
-          AppAssets.podStream,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-        ),
+        leading: Image.asset(AppAssets.logo),
+        leadingWidth: 100,
       ),
       body: const CustomScrollView(
         slivers: [
@@ -116,13 +115,16 @@ class _TrendingItem extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: Colors.black,
+                  color: Color(0xFF2D2D2D),
                 ),
               ),
               const AppSpacer(height: 4),
               Text(
                 host,
-                style: const TextStyle(fontSize: 14, color: Colors.grey),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: const Color(0xFF2D2D2D).withValues(alpha: .6),
+                ),
               ),
               const AppSpacer(height: 12),
               _PlayButton(duration: duration),
@@ -165,7 +167,7 @@ class _PlayButton extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(6),
             decoration: const BoxDecoration(
-              color: Colors.black,
+              color: Color(0xFF2D2D2D),
               shape: BoxShape.circle,
             ),
             child: const Icon(
@@ -180,7 +182,7 @@ class _PlayButton extends StatelessWidget {
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: Colors.black,
+              color: Color(0xFF2D2D2D),
             ),
           ),
         ],
@@ -227,43 +229,46 @@ class _RecommendedItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: 220,
-          height: 200,
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: const Color(0xFFD7F0E3),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(width: 3),
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: AssetImage(subAuthorData.image),
+    return GestureDetector(
+      onTap: () => context.push('/podcast'),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 220,
+            height: 200,
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: const Color(0xFFD7F0E3),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(width: 3),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage(subAuthorData.image),
+              ),
             ),
           ),
-        ),
-        const AppSpacer(height: 12),
-        Text(
-          subAuthorData.podcastHost ?? '',
-          style: const TextStyle(fontSize: 14),
-        ),
-        const AppSpacer(height: 4),
-        SizedBox(
-          width: 220,
-          child: Text(
-            subAuthorData.podcastDescription ?? '',
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: Colors.black,
-            ),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
+          const AppSpacer(height: 12),
+          Text(
+            subAuthorData.podcastHost ?? '',
+            style: const TextStyle(fontSize: 14),
           ),
-        ),
-      ],
+          const AppSpacer(height: 4),
+          SizedBox(
+            width: 220,
+            child: Text(
+              subAuthorData.podcastDescription ?? '',
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF2D2D2D),
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -361,7 +366,7 @@ class _RecentlyPlayedItem extends StatelessWidget {
                       ),
 
                       Text(
-                        '• ${podcast.podcastTime!} min',
+                        '• ${podcast.podcastTime!}',
                         style: const TextStyle(
                           fontSize: 12,
                           color: Colors.grey,
@@ -375,7 +380,7 @@ class _RecentlyPlayedItem extends StatelessWidget {
           ),
           const AppSpacer(width: 6),
           IconButton(
-            style: IconButton.styleFrom(backgroundColor: Colors.redAccent),
+            style: IconButton.styleFrom(backgroundColor: Colors.teal),
             onPressed: () {},
             icon: const Icon(Icons.play_arrow, color: Colors.white),
           ),

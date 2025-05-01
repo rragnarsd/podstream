@@ -7,11 +7,11 @@ class OnboardingButtonBar extends StatelessWidget {
   const OnboardingButtonBar({
     super.key,
     required this.continueText,
-    required this.continueWidget,
+    required this.routePath,
   });
 
   final String continueText;
-  final Widget continueWidget;
+  final String routePath;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class OnboardingButtonBar extends StatelessWidget {
                 onPressed: () => context.pop(),
                 child: const Text(
                   AppAssets.skipText,
-                  style: TextStyle(color: Colors.black, fontSize: 16),
+                  style: TextStyle(color: Color(0xFF2D2D2D), fontSize: 16),
                 ),
               ),
             ),
@@ -52,10 +52,13 @@ class OnboardingButtonBar extends StatelessWidget {
                     side: const BorderSide(width: 3),
                   ),
                 ),
-                onPressed: () => context.push(continueWidget.toString()),
+                onPressed: () => context.push(routePath),
                 child: Text(
                   continueText,
-                  style: const TextStyle(color: Colors.black, fontSize: 16),
+                  style: const TextStyle(
+                    color: Color(0xFF2D2D2D),
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ),

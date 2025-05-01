@@ -16,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
             expandedHeight: 250,
             pinned: true,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            iconTheme: const IconThemeData(color: Colors.black),
+            iconTheme: const IconThemeData(color: Color(0xFF2D2D2D)),
             actions: [
               IconButton(icon: const Icon(Icons.more_horiz), onPressed: () {}),
             ],
@@ -61,17 +61,10 @@ class ProfileSpaceBar extends StatelessWidget {
             const AppSpacer(height: 10),
             const Text(
               AppAssets.userName,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const AppSpacer(height: 4),
-            const Text(
-              AppAssets.userEmail,
-              style: TextStyle(fontSize: 14, color: Colors.grey),
-            ),
+            const Text(AppAssets.userEmail, style: TextStyle(fontSize: 14)),
             const AppSpacer(height: 12),
             OutlinedButton(
               style: OutlinedButton.styleFrom(
@@ -88,7 +81,7 @@ class ProfileSpaceBar extends StatelessWidget {
               onPressed: () => context.push('/premium'),
               child: const Text(
                 AppAssets.getPremium,
-                style: TextStyle(color: Colors.black, fontSize: 16),
+                style: TextStyle(color: Color(0xFF2D2D2D), fontSize: 16),
               ),
             ),
           ],

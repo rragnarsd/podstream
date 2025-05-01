@@ -26,7 +26,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
     return Scaffold(
       body: Container(
-        color: Colors.redAccent,
+        color: Colors.teal,
         height: size.height,
         width: size.width,
         child: Stack(
@@ -63,7 +63,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   void _handleSkip() async {
     await SharedPrefs.setOnboardingSeen();
     if (mounted) {
-      context.pushReplacement('interests');
+      context.pushReplacement('/onboarding/interests');
     }
   }
 
@@ -71,7 +71,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     if (_activePage == onboardingData.length - 1) {
       await SharedPrefs.setOnboardingSeen();
       if (mounted) {
-        context.pushReplacement('interests');
+        context.pushReplacement('/onboarding/interests');
       }
     } else {
       carouselController.animateToPage(_activePage + 1);
@@ -124,7 +124,11 @@ class _OnboardingInfo extends StatelessWidget {
                             onPressed: onSkip,
                             child: Text(
                               AppAssets.skipText,
-                              style: TextStyle(color: Colors.grey.shade400),
+                              style: TextStyle(
+                                color: const Color(
+                                  0xFF2D2D2D,
+                                ).withValues(alpha: 0.5),
+                              ),
                             ),
                           ),
                         )
@@ -142,7 +146,7 @@ class _OnboardingInfo extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Color(0xFF2D2D2D),
                 ),
               ),
               const AppSpacer(height: 16),
@@ -150,7 +154,10 @@ class _OnboardingInfo extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
                   page.description,
-                  style: const TextStyle(fontSize: 16, color: Colors.black),
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Color(0xFF2D2D2D),
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -170,7 +177,7 @@ class _OnboardingInfo extends StatelessWidget {
                   ),
                   iconAlignment: IconAlignment.end,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent,
+                    backgroundColor: Colors.teal,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -179,7 +186,11 @@ class _OnboardingInfo extends StatelessWidget {
                   onPressed: isLastPage ? onSkip : onNext,
                   label: Text(
                     isLastPage ? AppAssets.getStarted : AppAssets.next,
-                    style: const TextStyle(fontSize: 16, color: Colors.white),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
@@ -215,7 +226,7 @@ class _OnboardingDots extends StatelessWidget {
             height: 12.0,
             margin: const EdgeInsets.symmetric(horizontal: 4.0),
             decoration: BoxDecoration(
-              color: isActive ? Colors.redAccent : Colors.grey.shade400,
+              color: isActive ? Colors.teal : Colors.grey.shade400,
               borderRadius: BorderRadius.circular(8),
             ),
           ),

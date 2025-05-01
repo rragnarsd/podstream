@@ -21,6 +21,8 @@ class _RootState extends State<Root> {
     return Scaffold(
       body: widget.child,
       bottomNavigationBar: BottomNavigationBar(
+        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
+        unselectedFontSize: 14,
         currentIndex: _selectedTab.index,
         onTap: _onItemTapped,
         items: const [

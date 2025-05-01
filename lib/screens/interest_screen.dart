@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:podstream/local_data/interest_data.dart';
-import 'package:podstream/screens/subscribe_screen.dart';
 import 'package:podstream/utils/pod_assets.dart';
 import 'package:podstream/widgets/spacers.dart';
 
@@ -15,6 +14,68 @@ class InterestScreen extends StatefulWidget {
 class _InterestScreenState extends State<InterestScreen> {
   List<InterestData> selectedInterests = [];
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: Image.asset(AppAssets.logo),
+        leadingWidth: 100,
+        automaticallyImplyLeading: false,
+      ),
+      body: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              AppAssets.chooseYourInterestsDescription,
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            ),
+          ),
+          const AppSpacer(height: 24),
+          Wrap(
+            spacing: 16,
+            runSpacing: 6,
+            children:
+                interests
+                    .map(
+                      (interest) => GestureDetector(
+                        onTap: () => toggleInterest(interest),
+                        child: Chip(
+                          label: Text(
+                            interest.interest,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color:
+                                  selectedInterests.contains(interest)
+                                      ? interest.textColor
+                                      : const Color(0xFF2D2D2D),
+                            ),
+                          ),
+                          side: const BorderSide(width: 3),
+                          backgroundColor:
+                              selectedInterests.contains(interest)
+                                  ? interest.color
+                                  : Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                      ),
+                    )
+                    .toList(),
+          ),
+          const Spacer(),
+          const OnboardingButtonBar(
+            continueText: AppAssets.continueText,
+            routePath: '/onboarding/subscribe',
+          ),
+          const AppSpacer(height: 24),
+        ],
+      ),
+    );
+  }
+
   void toggleInterest(InterestData interest) {
     setState(() {
       if (selectedInterests.contains(interest)) {
@@ -24,86 +85,22 @@ class _InterestScreenState extends State<InterestScreen> {
       }
     });
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          AppAssets.chooseYourInterests,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            const Text(
-              AppAssets.chooseYourInterestsDescription,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-            ),
-            const AppSpacer(height: 24),
-            Wrap(
-              spacing: 16,
-              runSpacing: 6,
-              children:
-                  interests
-                      .map(
-                        (interest) => GestureDetector(
-                          onTap: () => toggleInterest(interest),
-                          child: Chip(
-                            label: Text(
-                              interest.interest,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color:
-                                    selectedInterests.contains(interest)
-                                        ? interest.textColor
-                                        : Colors.black,
-                              ),
-                            ),
-                            side: const BorderSide(width: 3),
-                            backgroundColor:
-                                selectedInterests.contains(interest)
-                                    ? interest.color
-                                    : Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                        ),
-                      )
-                      .toList(),
-            ),
-            const Spacer(),
-            const OnboardingButtonBar(
-              continueText: AppAssets.continueText,
-              continueWidget: SubscribeScreen(),
-            ),
-            const AppSpacer(height: 24),
-          ],
-        ),
-      ),
-    );
-  }
 }
 
 class OnboardingButtonBar extends StatelessWidget {
   const OnboardingButtonBar({
     super.key,
-
     required this.continueText,
-    required this.continueWidget,
+    required this.routePath,
   });
 
   final String continueText;
-  final Widget continueWidget;
+  final String routePath;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 16),
+      padding: const EdgeInsets.all(16),
       child: Row(
         children: [
           Expanded(
@@ -121,10 +118,15 @@ class OnboardingButtonBar extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),
-                onPressed: () => Navigator.pop(context),
+                //TODO
+                onPressed: () {},
                 child: const Text(
                   AppAssets.skipText,
-                  style: TextStyle(color: Colors.black, fontSize: 16),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color(0xFF2D2D2D),
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
@@ -139,17 +141,20 @@ class OnboardingButtonBar extends StatelessWidget {
               ),
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  backgroundColor: Colors.white,
+                  backgroundColor: Colors.teal,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),
-
-                onPressed: () => context.push(continueWidget.toString()),
+                onPressed: () => context.push(routePath),
                 child: Text(
                   continueText,
-                  style: const TextStyle(color: Colors.black, fontSize: 16),
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),

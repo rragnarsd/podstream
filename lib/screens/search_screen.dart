@@ -14,14 +14,12 @@ class SearchScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading: false,
-        title: const Text(
-          AppAssets.searchPodcasts,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-        ),
+        leading: Image.asset(AppAssets.logo),
+        leadingWidth: 100,
         actions: [
           IconButton(
             icon: const Icon(Icons.filter_list, size: 26),
-            color: Colors.black,
+            color: const Color(0xFF2D2D2D),
             onPressed: () {},
           ),
         ],
@@ -35,7 +33,7 @@ class SearchScreen extends StatelessWidget {
           CategoryList(),
           SliverAppSpacer(height: 32),
           SliverAppTextHeader(title: AppAssets.popularPodcasts),
-          SliverAppSpacer(height: 12),
+          SliverAppSpacer(height: 4),
           PodcastList(),
           SliverAppSpacer(height: 24),
         ],
@@ -82,7 +80,7 @@ class CategoryList extends StatelessWidget {
         height: 90,
         child: ListView.separated(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          itemCount: categories.length,
+          itemCount: 4,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             final category = categories[index];
@@ -232,7 +230,7 @@ class PodCastItem extends StatelessWidget {
           ),
           const AppSpacer(width: 6),
           IconButton(
-            style: IconButton.styleFrom(backgroundColor: Colors.redAccent),
+            style: IconButton.styleFrom(backgroundColor: Colors.teal),
             onPressed: () {},
             icon: const Icon(Icons.play_arrow, color: Colors.white),
           ),

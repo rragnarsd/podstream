@@ -21,7 +21,7 @@ class SubscribeAuthorData {
 List<SubscribeAuthorData> subscribeAuthorData = [
   SubscribeAuthorData(
     podCastName: 'Story Time',
-    podCastQty: '25 episodes',
+    podCastQty: '25 Podcasts',
     image: AppAssets.avatar1,
     podcastHost: 'Miss Sarah',
     podcastDescription:
@@ -30,7 +30,7 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   ),
   SubscribeAuthorData(
     podCastName: 'Science Explorers',
-    podCastQty: '18 episodes',
+    podCastQty: '18 Podcasts',
     image: AppAssets.avatar2,
     podcastHost: 'Dr. Brain',
     podcastDescription:
@@ -39,7 +39,7 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   ),
   SubscribeAuthorData(
     podCastName: 'Adventure Time',
-    podCastQty: '30 episodes',
+    podCastQty: '30 Podcasts',
     image: AppAssets.avatar3,
     podcastHost: 'Captain Jack',
     podcastDescription:
@@ -48,7 +48,7 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   ),
   SubscribeAuthorData(
     podCastName: 'Music Makers',
-    podCastQty: '15 episodes',
+    podCastQty: '15 Podcasts',
     image: AppAssets.avatar4,
     podcastHost: 'Melody',
     podcastDescription:
@@ -57,7 +57,7 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   ),
   SubscribeAuthorData(
     podCastName: 'Space Explorers',
-    podCastQty: '12 episodes',
+    podCastQty: '12 Podcasts',
     image: AppAssets.avatar5,
     podcastHost: 'Astro Annie',
     podcastDescription:
@@ -66,7 +66,7 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   ),
   SubscribeAuthorData(
     podCastName: 'Animal Friends',
-    podCastQty: '20 episodes',
+    podCastQty: '20 Podcasts',
     image: AppAssets.avatar6,
     podcastHost: 'Zoo Keeper Zoe',
     podcastDescription:
@@ -75,7 +75,7 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   ),
   SubscribeAuthorData(
     podCastName: 'Art Adventures',
-    podCastQty: '16 episodes',
+    podCastQty: '16 Podcasts',
     image: AppAssets.avatar7,
     podcastHost: 'Artie',
     podcastDescription:
@@ -84,7 +84,7 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   ),
   SubscribeAuthorData(
     podCastName: 'Superhero Stories',
-    podCastQty: '22 episodes',
+    podCastQty: '22 Podcasts',
     image: AppAssets.avatar8,
     podcastHost: 'Captain Courage',
     podcastDescription:
@@ -93,8 +93,8 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   ),
   SubscribeAuthorData(
     podCastName: 'Dinosaur Discoveries',
-    podCastQty: '10 episodes',
-    image: AppAssets.avatar8,
+    podCastQty: '10 Podcasts',
+    image: AppAssets.avatar9,
     podcastHost: 'Dino Dan',
     podcastDescription:
         'Travel back in time to meet dinosaurs and learn about prehistoric life!',
@@ -102,8 +102,8 @@ List<SubscribeAuthorData> subscribeAuthorData = [
   ),
   SubscribeAuthorData(
     podCastName: 'Funny Tales',
-    podCastQty: '28 episodes',
-    image: AppAssets.avatar2,
+    podCastQty: '28 Podcasts',
+    image: AppAssets.avatar10,
     podcastHost: 'Giggles',
     podcastDescription:
         'Laugh-out-loud stories and jokes that will make your day brighter!',
