@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:podstream/local_data/subscribe_data.dart';
 import 'package:podstream/screens/search_screen.dart';
 import 'package:podstream/widgets/spacers.dart';
 import 'package:podstream/widgets/text_headers.dart';
@@ -45,7 +44,7 @@ class PodcastScreen extends StatelessWidget {
                         vertical: 12,
                       ),
                     ),
-                    onPressed: () => context.push('/premium'),
+                    onPressed: () {},
                     icon: const Row(
                       children: [
                         Icon(Icons.person_add_alt, color: Colors.black),
@@ -67,6 +66,7 @@ class PodcastScreen extends StatelessWidget {
           ),
           const SliverAppTextHeader(title: 'All Episodes'),
           const SliverAppSpacer(height: 8),
+          //TODO - Add corresponding podcast list with a specific host
           const PodcastList(),
         ],
       ),

@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:podstream/utils/pod_assets.dart';
 
 class CategoryData {
   final String category;
   final String podcastCount;
   final Color color;
   final Color textColor;
+  final String? image;
 
   CategoryData({
     required this.category,
     required this.podcastCount,
     required this.color,
     required this.textColor,
+    this.image,
   });
 }
 
@@ -20,6 +23,7 @@ List<CategoryData> categories = [
     podcastCount: '12 Podcasts',
     color: const Color(0xFFF1BA88),
     textColor: const Color(0xFF2D2D2D),
+    image: AppAssets.avatar14,
   ),
   CategoryData(
     category: 'Science',

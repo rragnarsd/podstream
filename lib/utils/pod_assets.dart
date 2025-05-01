@@ -14,6 +14,8 @@ class AppAssets {
   static const String avatar12 = 'assets/images/avatar12.png';
   static const String avatar13 = 'assets/images/avatar13.png';
 
+  static const String avatar14 = 'assets/images/avatar17.jpg';
+
   // Logos
   static const String premiumTriangle = 'assets/logos/podstream_triangles.png';
   static const String logo = 'assets/logos/podstream_logo.png';

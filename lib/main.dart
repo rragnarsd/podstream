@@ -6,7 +6,6 @@ void main() {
   runApp(const MyApp());
 }
 
-//TODO - Add logo on splash screen
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
