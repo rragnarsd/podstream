@@ -2,9 +2,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:podstream/local_data/onboarding_data.dart';
+import 'package:podstream/utils/pod_assets.dart';
+import 'package:podstream/utils/shared_prefs.dart';
 import 'package:podstream/widgets/spacers.dart';
 
-//TODO - Add SharedPrefs
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -23,53 +24,63 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     final page = onboardingData[_activePage];
     final size = MediaQuery.sizeOf(context);
 
-    return Container(
-      color: Colors.redAccent,
-      height: size.height,
-      width: size.width,
-      child: Stack(
-        children: [
-          CarouselSlider(
-            carouselController: carouselController,
-            items:
-                onboardingData
-                    .map((item) => Image.asset(item.image, fit: BoxFit.cover))
-                    .toList(),
-            options: CarouselOptions(
-              height: size.height,
-              aspectRatio: 1,
-              viewportFraction: 1,
-              scrollPhysics: const BouncingScrollPhysics(),
-              enlargeCenterPage: true,
-              onPageChanged: (index, _) => setState(() => _activePage = index),
+    return Scaffold(
+      body: Container(
+        color: Colors.redAccent,
+        height: size.height,
+        width: size.width,
+        child: Stack(
+          children: [
+            CarouselSlider(
+              carouselController: carouselController,
+              items:
+                  onboardingData
+                      .map((item) => Image.asset(item.image, fit: BoxFit.cover))
+                      .toList(),
+              options: CarouselOptions(
+                height: size.height,
+                aspectRatio: 1,
+                viewportFraction: 1,
+                scrollPhysics: const BouncingScrollPhysics(),
+                enlargeCenterPage: true,
+                onPageChanged:
+                    (index, _) => setState(() => _activePage = index),
+              ),
             ),
-          ),
-          OnboardingInfo(
-            page: page,
-            carouselController: carouselController,
-            activePage: _activePage,
-            onSkip: _handleSkip,
-            onNext: _handleNext,
-          ),
-        ],
+            _OnboardingInfo(
+              page: page,
+              carouselController: carouselController,
+              activePage: _activePage,
+              onSkip: _handleSkip,
+              onNext: _handleNext,
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  void _handleSkip() => context.pushReplacement('/interest-screen');
+  void _handleSkip() async {
+    await SharedPrefs.setOnboardingSeen();
+    if (mounted) {
+      context.pushReplacement('interests');
+    }
+  }
 
-  void _handleNext() {
+  void _handleNext() async {
     if (_activePage == onboardingData.length - 1) {
-      context.pushReplacement('/interest-screen');
+      await SharedPrefs.setOnboardingSeen();
+      if (mounted) {
+        context.pushReplacement('interests');
+      }
     } else {
       carouselController.animateToPage(_activePage + 1);
     }
   }
 }
 
-class OnboardingInfo extends StatelessWidget {
-  const OnboardingInfo({
-    super.key,
+class _OnboardingInfo extends StatelessWidget {
+  const _OnboardingInfo({
     required this.page,
     required this.carouselController,
     required this.activePage,
@@ -92,7 +103,7 @@ class OnboardingInfo extends StatelessWidget {
       bottom: 0,
       child: Container(
         width: size.width,
-        height: 360,
+        height: 340,
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -112,7 +123,7 @@ class OnboardingInfo extends StatelessWidget {
                           child: TextButton(
                             onPressed: onSkip,
                             child: Text(
-                              'Skip',
+                              AppAssets.skipText,
                               style: TextStyle(color: Colors.grey.shade400),
                             ),
                           ),
@@ -144,7 +155,7 @@ class OnboardingInfo extends StatelessWidget {
                 ),
               ),
               const AppSpacer(height: 24),
-              OnboardingDots(
+              _OnboardingDots(
                 carouselController: carouselController,
                 activePage: activePage,
               ),
@@ -167,7 +178,7 @@ class OnboardingInfo extends StatelessWidget {
                   ),
                   onPressed: isLastPage ? onSkip : onNext,
                   label: Text(
-                    isLastPage ? 'Get Started' : 'Next',
+                    isLastPage ? AppAssets.getStarted : AppAssets.next,
                     style: const TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
@@ -180,9 +191,8 @@ class OnboardingInfo extends StatelessWidget {
   }
 }
 
-class OnboardingDots extends StatelessWidget {
-  const OnboardingDots({
-    super.key,
+class _OnboardingDots extends StatelessWidget {
+  const _OnboardingDots({
     required this.carouselController,
     required this.activePage,
   });

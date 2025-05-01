@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:podstream/local_data/category_data.dart';
 import 'package:podstream/local_data/subscribe_data.dart';
+import 'package:podstream/utils/pod_assets.dart';
 import 'package:podstream/widgets/spacers.dart';
 import 'package:podstream/widgets/text_headers.dart';
 
@@ -14,7 +15,7 @@ class SearchScreen extends StatelessWidget {
         centerTitle: true,
         automaticallyImplyLeading: false,
         title: const Text(
-          'Search Podcasts',
+          AppAssets.searchPodcasts,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
         actions: [
@@ -29,11 +30,11 @@ class SearchScreen extends StatelessWidget {
         slivers: [
           SearchField(),
           SliverAppSpacer(height: 32),
-          SliverAppTextHeader(title: 'Top Categories'),
+          SliverAppTextHeader(title: AppAssets.topCategories),
           SliverAppSpacer(height: 12),
           CategoryList(),
           SliverAppSpacer(height: 32),
-          SliverAppTextHeader(title: 'Popular Podcasts'),
+          SliverAppTextHeader(title: AppAssets.popularPodcasts),
           SliverAppSpacer(height: 12),
           PodcastList(),
           SliverAppSpacer(height: 24),
@@ -59,7 +60,7 @@ class SearchField extends StatelessWidget {
           child: const TextField(
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.search),
-              hintText: 'Search for podcasts.....',
+              hintText: AppAssets.searchPodcasts,
               border: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),
               ),
@@ -102,9 +103,10 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 160,
+      width: 200,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
+        border: Border.all(width: 3),
         color: category.color,
       ),
       child: Padding(
@@ -122,7 +124,7 @@ class CategoryItem extends StatelessWidget {
             ),
             const AppSpacer(width: 8),
             Text(
-              '${category.podcastCount} Podcasts',
+              category.podcastCount,
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,

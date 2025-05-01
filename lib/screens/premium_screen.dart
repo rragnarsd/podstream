@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:podstream/utils/pod_assets.dart';
 import 'package:podstream/widgets/spacers.dart';
 
 class PremiumScreen extends StatelessWidget {
@@ -21,7 +22,7 @@ class PremiumScreen extends StatelessWidget {
             padding: EdgeInsets.only(bottom: 4, left: 16, right: 16),
             sliver: SliverToBoxAdapter(
               child: Text(
-                'Subscribe to Premium',
+                AppAssets.subscribeToPremium,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
               ),
             ),
@@ -30,7 +31,7 @@ class PremiumScreen extends StatelessWidget {
             padding: EdgeInsets.only(bottom: 16, left: 16, right: 16),
             sliver: SliverToBoxAdapter(
               child: Text(
-                'Enjoy listening to podcasts without distractions.',
+                AppAssets.enjoyPodcasts,
                 style: TextStyle(fontSize: 16),
               ),
             ),
@@ -41,15 +42,15 @@ class PremiumScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SubscriptionCard(
-                    title: 'Starter',
-                    price: '\$4.99/month',
+                    title: AppAssets.starter,
+                    price: AppAssets.starterPrice,
                     features: premiumFeatures,
                     isSelected: true,
                   ),
                   const AppSpacer(height: 16),
                   SubscriptionCard(
-                    title: 'Professional',
-                    price: '\$9.99/month',
+                    title: AppAssets.professional,
+                    price: AppAssets.professionalPrice,
                     features: professionalFeatures,
                     isSelected: false,
                   ),
@@ -142,7 +143,7 @@ class SubscriptionCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight:
-                            feature == '+ Everything in Starter'
+                            feature == '+ ${AppAssets.everythingInStarter}'
                                 ? FontWeight.bold
                                 : FontWeight.w500,
                       ),
@@ -160,16 +161,18 @@ class SubscriptionCard extends StatelessWidget {
 }
 
 List<String> premiumFeatures = [
-  'Unlimited access to all podcasts',
-  'No ads',
-  'High-quality audio',
-  'Download podcasts for offline listening',
+  AppAssets.unlimitedAccessToAllPodcasts,
+  AppAssets.noAds,
+  AppAssets.highQualityAudio,
+  AppAssets.downloadPodcastsForOfflineListening,
+  AppAssets.funStickersAndRewards,
 ];
 
 List<String> professionalFeatures = [
-  'Early access to new episodes',
-  'Exclusive content and interviews',
-  'Custom playlists and recommendations',
-  'Priority customer support',
-  '+ Everything in Starter',
+  AppAssets.earlyAccessToNewEpisodes,
+  AppAssets.exclusiveContentAndInterviews,
+  AppAssets.customPlaylistsAndRecommendations,
+  AppAssets.priorityCustomerSupport,
+  AppAssets.learningProgressTracking,
+  '+ ${AppAssets.everythingInStarter}',
 ];

@@ -17,23 +17,24 @@ class OnboardingData {
 
 List<OnboardingData> onboardingData = [
   OnboardingData(
-    title: 'Aenean imperdiet',
-    description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
-    image: AppAssets.avatar8,
-    color: Colors.red,
-  ),
-  OnboardingData(
-    title: 'Sed fringilla mauris',
+    title: 'Welcome to Your Story World!',
     description:
-        'Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.',
-    image: AppAssets.avatar9,
+        'Discover amazing stories, fun facts, and exciting adventures made just for you!',
+    image: AppAssets.avatar8,
     color: Colors.blue,
   ),
   OnboardingData(
-    title: 'Dolor sit ameth',
+    title: 'Learn While Having Fun',
     description:
-        'Nullam dictum felis eu pede mollis pretium. Integer tincidunt.',
-    image: AppAssets.avatar10,
+        'Explore science, history, and cool facts through engaging stories and podcasts!',
+    image: AppAssets.avatar9,
     color: Colors.green,
+  ),
+  OnboardingData(
+    title: 'Choose Your Adventure',
+    description:
+        'Pick from awesome categories like space, dinosaurs, fairy tales, and more!',
+    image: AppAssets.avatar10,
+    color: Colors.purple,
   ),
 ];

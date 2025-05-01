@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:podstream/local_data/interest_data.dart';
 import 'package:podstream/screens/subscribe_screen.dart';
+import 'package:podstream/utils/pod_assets.dart';
 import 'package:podstream/widgets/spacers.dart';
 
 class InterestScreen extends StatefulWidget {
@@ -29,7 +30,7 @@ class _InterestScreenState extends State<InterestScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Choose your interests',
+          AppAssets.chooseYourInterests,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
       ),
@@ -38,7 +39,7 @@ class _InterestScreenState extends State<InterestScreen> {
         child: Column(
           children: [
             const Text(
-              'Choose your interest and get the best podcast for you. You can choose multiple interests.',
+              AppAssets.chooseYourInterestsDescription,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             ),
             const AppSpacer(height: 24),
@@ -77,7 +78,7 @@ class _InterestScreenState extends State<InterestScreen> {
             ),
             const Spacer(),
             const OnboardingButtonBar(
-              continueText: 'Continue',
+              continueText: AppAssets.continueText,
               continueWidget: SubscribeScreen(),
             ),
             const AppSpacer(height: 24),
@@ -122,7 +123,7 @@ class OnboardingButtonBar extends StatelessWidget {
                 ),
                 onPressed: () => Navigator.pop(context),
                 child: const Text(
-                  'Skip',
+                  AppAssets.skipText,
                   style: TextStyle(color: Colors.black, fontSize: 16),
                 ),
               ),
@@ -146,9 +147,9 @@ class OnboardingButtonBar extends StatelessWidget {
                 ),
 
                 onPressed: () => context.push(continueWidget.toString()),
-                child: const Text(
-                  'Continue',
-                  style: TextStyle(color: Colors.black, fontSize: 16),
+                child: Text(
+                  continueText,
+                  style: const TextStyle(color: Colors.black, fontSize: 16),
                 ),
               ),
             ),

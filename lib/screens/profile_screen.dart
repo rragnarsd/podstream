@@ -60,7 +60,7 @@ class ProfileSpaceBar extends StatelessWidget {
             ),
             const AppSpacer(height: 10),
             const Text(
-              'Bruce Wayne',
+              AppAssets.userName,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -69,7 +69,7 @@ class ProfileSpaceBar extends StatelessWidget {
             ),
             const AppSpacer(height: 4),
             const Text(
-              'bruce.wayne@example.com',
+              AppAssets.userEmail,
               style: TextStyle(fontSize: 14, color: Colors.grey),
             ),
             const AppSpacer(height: 12),
@@ -87,7 +87,7 @@ class ProfileSpaceBar extends StatelessWidget {
               ),
               onPressed: () => context.push('/premium'),
               child: const Text(
-                'Get Premium',
+                AppAssets.getPremium,
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ),

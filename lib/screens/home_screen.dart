@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:podstream/local_data/subscribe_data.dart';
+import 'package:podstream/local_data/trending_data.dart';
 import 'package:podstream/utils/pod_assets.dart';
 import 'package:podstream/widgets/spacers.dart';
 import 'package:podstream/widgets/text_headers.dart';
@@ -14,7 +15,7 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         automaticallyImplyLeading: false,
         title: const Text(
-          'PodStream',
+          AppAssets.podStream,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
       ),
@@ -44,28 +45,31 @@ class _TrendingListState extends State<_TrendingList> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              'Trending podcasts',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-            ),
-          ),
+          const AppTextHeader(title: AppAssets.trendingPodcasts),
           const AppSpacer(height: 16),
           SizedBox(
             height: 180,
             child: ListView.builder(
-              clipBehavior: Clip.none,
               scrollDirection: Axis.horizontal,
-              itemCount: 3,
-              itemBuilder:
-                  (context, index) => Padding(
-                    padding: EdgeInsets.only(
-                      left: index == 0 ? 16 : 0,
-                      right: 16,
-                    ),
-                    child: const _TrendingItem(),
+              itemCount: trendingPodcasts.length,
+              physics: const BouncingScrollPhysics(),
+              clipBehavior: Clip.none,
+              itemBuilder: (context, index) {
+                final podcast = trendingPodcasts[index];
+                return Padding(
+                  padding: EdgeInsets.only(
+                    left: index == 0 ? 16 : 0,
+                    right: 16,
                   ),
+                  child: _TrendingItem(
+                    title: podcast.title,
+                    host: podcast.host,
+                    duration: podcast.duration,
+                    image: podcast.image,
+                    backgroundColor: podcast.backgroundColor,
+                  ),
+                );
+              },
             ),
           ),
           const AppSpacer(height: 32),
@@ -76,7 +80,19 @@ class _TrendingListState extends State<_TrendingList> {
 }
 
 class _TrendingItem extends StatelessWidget {
-  const _TrendingItem();
+  const _TrendingItem({
+    required this.title,
+    required this.host,
+    required this.duration,
+    required this.image,
+    required this.backgroundColor,
+  });
+
+  final String title;
+  final String host;
+  final String duration;
+  final String image;
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -87,35 +103,36 @@ class _TrendingItem extends StatelessWidget {
           width: 300,
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: const Color(0xFFD7F0E3),
+            color: backgroundColor,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(width: 3),
           ),
-          child: const Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Creative Chronicles:\nArtist's Journey",
-                style: TextStyle(
+                title,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: Colors.black,
                 ),
               ),
-              AppSpacer(height: 4),
+              const AppSpacer(height: 4),
               Text(
-                'Diana Rose',
-                style: TextStyle(fontSize: 14, color: Colors.grey),
+                host,
+                style: const TextStyle(fontSize: 14, color: Colors.grey),
               ),
-              AppSpacer(height: 12),
-              _PlayButton(duration: '38 min'),
+              const AppSpacer(height: 12),
+              _PlayButton(duration: duration),
             ],
           ),
         ),
         Positioned(
           right: 0,
           bottom: 0,
-          child: Image.asset(AppAssets.avatar8, height: 200, fit: BoxFit.cover),
+          child: Image.asset(image, height: 200, fit: BoxFit.cover),
         ),
       ],
     );
@@ -181,7 +198,7 @@ class _RecommendedList extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const AppTextHeader(title: 'Recommended for you'),
+          const AppTextHeader(title: AppAssets.recommendedForYou),
           const AppSpacer(height: 16),
           SizedBox(
             height: 300,
@@ -261,7 +278,7 @@ class _RecentlyPlayedList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const AppSpacer(height: 8),
-          const AppTextHeader(title: 'Recently played'),
+          const AppTextHeader(title: AppAssets.recentlyPlayed),
           const AppSpacer(height: 4),
           ListView.builder(
             shrinkWrap: true,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:podstream/utils/pod_assets.dart';
 
 enum TabItem { home, search, profile }
 
@@ -26,17 +27,17 @@ class _RootState extends State<Root> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined, size: 20),
             activeIcon: Icon(Icons.home, size: 20),
-            label: 'Home',
+            label: AppAssets.home,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search_outlined, size: 20),
             activeIcon: Icon(Icons.search, size: 20),
-            label: 'Search',
+            label: AppAssets.search,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outlined, size: 20),
             activeIcon: Icon(Icons.person, size: 20),
-            label: 'Profile',
+            label: AppAssets.profile,
           ),
         ],
       ),

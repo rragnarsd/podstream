@@ -8,16 +8,32 @@ class ProfileData {
 }
 
 List<ProfileData> profileData = [
-  ProfileData(title: 'Edit Profile', icon: const Icon(Icons.person_outline)),
   ProfileData(
-    title: 'Notification',
-    icon: const Icon(Icons.notifications_outlined),
+    title: 'My Favorites',
+    icon: const Icon(Icons.favorite, color: Colors.pink),
   ),
-  ProfileData(title: 'Downloads', icon: const Icon(Icons.download_outlined)),
-  ProfileData(title: 'Security', icon: const Icon(Icons.security_outlined)),
   ProfileData(
-    title: 'Language & Region',
-    icon: const Icon(Icons.language_outlined),
+    title: 'My Playlists',
+    icon: const Icon(Icons.playlist_play, color: Colors.blue),
   ),
-  ProfileData(title: 'Help Center', icon: const Icon(Icons.help_outline)),
+  ProfileData(
+    title: 'My Stickers',
+    icon: const Icon(Icons.stars, color: Colors.purple),
+  ),
+  ProfileData(
+    title: 'My Learning Goals',
+    icon: const Icon(Icons.school, color: Colors.indigo),
+  ),
+  ProfileData(
+    title: 'My Story Collection',
+    icon: const Icon(Icons.book, color: Colors.brown),
+  ),
+  ProfileData(
+    title: 'My Listening History',
+    icon: const Icon(Icons.history, color: Colors.teal),
+  ),
+  ProfileData(
+    title: 'My Settings',
+    icon: const Icon(Icons.settings, color: Colors.grey),
+  ),
 ];

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:podstream/utils/pod_assets.dart';
 import 'package:podstream/widgets/spacers.dart';
 
 class OnboardingButtonBar extends StatelessWidget {
@@ -32,7 +33,7 @@ class OnboardingButtonBar extends StatelessWidget {
                 ),
                 onPressed: () => context.pop(),
                 child: const Text(
-                  'Skip',
+                  AppAssets.skipText,
                   style: TextStyle(color: Colors.black, fontSize: 16),
                 ),
               ),
