@@ -1,4 +1,4 @@
-import 'package:podstream/utils/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_assets.dart';
 
 class SubscribeAuthorData {
   final String podCastName;

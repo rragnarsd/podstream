@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:podstream/local_data/subscribe_data.dart';
 import 'package:podstream/screens/interest_screen.dart';
-import 'package:podstream/utils/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_colors.dart';
+import 'package:podstream/utils/constants/pod_text_styles.dart';
+import 'package:podstream/widgets/buttons.dart';
 import 'package:podstream/widgets/spacers.dart';
 
 class SubscribeScreen extends StatelessWidget {
@@ -17,36 +20,39 @@ class SubscribeScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: const Text(
           AppAssets.subscribeText1,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+          style: PodTextStyles.bodyXLarge,
         ),
       ),
-      body: const Column(
+      body: Column(
         children: [
           Expanded(
             child: CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
                     child: Text(
                       AppAssets.subscribeText2,
-                      style: TextStyle(
-                        fontSize: 16,
+
+                      style: PodTextStyles.bodyLarge.copyWith(
                         fontWeight: FontWeight.w400,
                       ),
                     ),
                   ),
                 ),
-                SliverAppSpacer(height: 12),
-                SubScribeList(),
+                const SliverAppSpacer(height: 12),
+                const SubScribeList(),
               ],
             ),
           ),
-          OnboardingButtonBar(
+          const OnboardingButtonBar(
             continueText: AppAssets.continueText,
             routePath: '/',
           ),
-          AppSpacer(height: 24),
+          const AppSpacer(height: 24),
         ],
       ),
     );
@@ -99,40 +105,29 @@ class _SubScribeListState extends State<SubScribeList> {
                     children: [
                       Text(
                         authorData.podCastName,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: PodTextStyles.bodyXLarge,
                       ),
                       Text(
                         authorData.podCastQty,
-                        style: const TextStyle(
-                          fontSize: 14,
+                        style: PodTextStyles.bodyMedium.copyWith(
                           fontWeight: FontWeight.w800,
-                          color: Colors.grey,
+                          color: PodColors.textColor.withValues(alpha: .6),
                         ),
                       ),
                     ],
                   ),
                 ],
               ),
-              IconButton(
-                style: IconButton.styleFrom(
-                  backgroundColor:
-                      isSelectedList[index] ? Colors.teal : Colors.white,
-                  shape: CircleBorder(
-                    side: BorderSide(width: isSelectedList[index] ? 0 : 3),
-                  ),
-                ),
+              AppIconButton(
+                icon: isSelectedList[index] ? Icons.check : Icons.add,
+                backgroundColor:
+                    isSelectedList[index] ? PodColors.tealColor : null,
+                iconColor: isSelectedList[index] ? PodColors.whiteColor : null,
                 onPressed: () {
                   setState(() {
                     isSelectedList[index] = !isSelectedList[index];
                   });
                 },
-                icon: Icon(
-                  isSelectedList[index] ? Icons.check : Icons.add,
-                  color: isSelectedList[index] ? Colors.white : null,
-                ),
               ),
             ],
           ),

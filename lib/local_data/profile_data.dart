@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:podstream/utils/constants/pod_colors.dart';
 
 class ProfileData {
   final String title;
@@ -10,30 +11,30 @@ class ProfileData {
 List<ProfileData> profileData = [
   ProfileData(
     title: 'My Favorites',
-    icon: const Icon(Icons.favorite, color: Color(0xFFE57373)),
+    icon: const Icon(Icons.favorite, color: PodColors.favoriteRed),
   ),
   ProfileData(
     title: 'My Playlists',
-    icon: const Icon(Icons.playlist_play, color: Color(0xFF64B5F6)),
+    icon: const Icon(Icons.playlist_play, color: PodColors.playlistBlue),
   ),
   ProfileData(
     title: 'My Stickers',
-    icon: const Icon(Icons.stars, color: Color(0xFFBA68C8)),
+    icon: const Icon(Icons.stars, color: PodColors.stickerPurple),
   ),
   ProfileData(
     title: 'My Learning Goals',
-    icon: const Icon(Icons.school, color: Color(0xFF7986CB)),
+    icon: const Icon(Icons.school, color: PodColors.learningIndigo),
   ),
   ProfileData(
     title: 'My Story Collection',
-    icon: const Icon(Icons.book, color: Color(0xFFA1887F)),
+    icon: const Icon(Icons.book, color: PodColors.storyBrown),
   ),
   ProfileData(
     title: 'My Listening History',
-    icon: const Icon(Icons.history, color: Color(0xFF4DB6AC)),
+    icon: const Icon(Icons.history, color: PodColors.historyTeal),
   ),
   ProfileData(
     title: 'My Settings',
-    icon: const Icon(Icons.settings, color: Color(0xFF90A4AE)),
+    icon: const Icon(Icons.settings, color: PodColors.settingsBlueGrey),
   ),
 ];

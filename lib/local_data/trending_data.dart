@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:podstream/utils/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_colors.dart';
 
 class TrendingPodcast {
   final String title;
@@ -23,20 +24,20 @@ final List<TrendingPodcast> trendingPodcasts = [
     host: 'Captain Courage',
     duration: '20 min',
     image: AppAssets.avatar11,
-    backgroundColor: Color(0xffc8e6c9),
+    backgroundColor: PodColors.mintLeaf,
   ),
   const TrendingPodcast(
     title: 'Dinosaur Discoveries',
     host: 'Dino Dan',
     duration: '25 min',
     image: AppAssets.avatar12,
-    backgroundColor: Color(0xFFD8C3E2),
+    backgroundColor: PodColors.lavenderCream,
   ),
   const TrendingPodcast(
     title: 'Funny Tales',
     host: 'Giggles',
     duration: '16 min',
     image: AppAssets.avatar13,
-    backgroundColor: Color(0xFFFFE0B5),
+    backgroundColor: PodColors.paleApricot,
   ),
 ];

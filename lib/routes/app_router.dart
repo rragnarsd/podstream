@@ -8,7 +8,7 @@ import 'package:podstream/screens/premium_screen.dart';
 import 'package:podstream/screens/search_screen.dart';
 import 'package:podstream/screens/profile_screen.dart';
 import 'package:podstream/screens/subscribe_screen.dart';
-import 'package:podstream/widgets/root.dart';
+import 'package:podstream/root.dart';
 import 'package:podstream/utils/shared_prefs.dart';
 
 final GoRouter router = GoRouter(

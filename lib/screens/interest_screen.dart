@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:podstream/local_data/interest_data.dart';
-import 'package:podstream/utils/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_colors.dart';
+import 'package:podstream/utils/constants/pod_text_styles.dart';
+import 'package:podstream/utils/shared_prefs.dart';
+import 'package:podstream/widgets/buttons.dart';
 import 'package:podstream/widgets/spacers.dart';
 
 class InterestScreen extends StatefulWidget {
@@ -24,11 +28,13 @@ class _InterestScreenState extends State<InterestScreen> {
       ),
       body: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               AppAssets.chooseYourInterestsDescription,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              style: PodTextStyles.bodyLarge.copyWith(
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
           const AppSpacer(height: 24),
@@ -43,20 +49,19 @@ class _InterestScreenState extends State<InterestScreen> {
                         child: Chip(
                           label: Text(
                             interest.interest,
-                            style: TextStyle(
-                              fontSize: 14,
+                            style: PodTextStyles.bodyMedium.copyWith(
                               fontWeight: FontWeight.w600,
                               color:
                                   selectedInterests.contains(interest)
                                       ? interest.textColor
-                                      : const Color(0xFF2D2D2D),
+                                      : PodColors.textColor,
                             ),
                           ),
                           side: const BorderSide(width: 3),
                           backgroundColor:
                               selectedInterests.contains(interest)
                                   ? interest.color
-                                  : Colors.white,
+                                  : PodColors.whiteColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
@@ -104,58 +109,27 @@ class OnboardingButtonBar extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(width: 3),
-              ),
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                ),
-                //TODO
-                onPressed: () {},
-                child: const Text(
-                  AppAssets.skipText,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Color(0xFF2D2D2D),
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+              child: AppOutlinedButton(
+                onPressed: () async {
+                  await SharedPrefs.setOnboardingSeen();
+                  if (!context.mounted) return;
+                  context.pushReplacement('/onboarding/interests');
+                },
+                title: AppAssets.skipText,
               ),
             ),
           ),
           const AppSpacer(width: 12),
           Expanded(
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(width: 3),
-              ),
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: Colors.teal,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                ),
+              child: AppOutlinedButton(
                 onPressed: () => context.push(routePath),
-                child: Text(
-                  continueText,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                backgroundColor: PodColors.tealColor,
+                textColor: PodColors.whiteColor,
+                title: continueText,
               ),
             ),
           ),

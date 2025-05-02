@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:podstream/utils/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_colors.dart';
+import 'package:podstream/utils/constants/pod_text_styles.dart';
 import 'package:podstream/widgets/spacers.dart';
 
 class OnboardingButtonBar extends StatelessWidget {
@@ -24,7 +26,7 @@ class OnboardingButtonBar extends StatelessWidget {
               width: double.infinity,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  backgroundColor: Colors.white,
+                  backgroundColor: PodColors.whiteColor,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4),
@@ -34,7 +36,7 @@ class OnboardingButtonBar extends StatelessWidget {
                 onPressed: () => context.pop(),
                 child: const Text(
                   AppAssets.skipText,
-                  style: TextStyle(color: Color(0xFF2D2D2D), fontSize: 16),
+                  style: PodTextStyles.bodyLarge,
                 ),
               ),
             ),
@@ -45,7 +47,7 @@ class OnboardingButtonBar extends StatelessWidget {
               width: double.infinity,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  backgroundColor: Colors.white,
+                  backgroundColor: PodColors.whiteColor,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4),
@@ -53,13 +55,7 @@ class OnboardingButtonBar extends StatelessWidget {
                   ),
                 ),
                 onPressed: () => context.push(routePath),
-                child: Text(
-                  continueText,
-                  style: const TextStyle(
-                    color: Color(0xFF2D2D2D),
-                    fontSize: 16,
-                  ),
-                ),
+                child: Text(continueText, style: PodTextStyles.bodyLarge),
               ),
             ),
           ),

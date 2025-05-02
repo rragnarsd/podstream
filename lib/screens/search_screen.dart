@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:podstream/local_data/category_data.dart';
 import 'package:podstream/local_data/subscribe_data.dart';
-import 'package:podstream/utils/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_colors.dart';
+import 'package:podstream/utils/constants/pod_text_styles.dart';
+import 'package:podstream/widgets/buttons.dart';
 import 'package:podstream/widgets/spacers.dart';
 import 'package:podstream/widgets/text_headers.dart';
 
@@ -17,10 +20,15 @@ class SearchScreen extends StatelessWidget {
         leading: Image.asset(AppAssets.logo),
         leadingWidth: 100,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.filter_list, size: 26),
-            color: const Color(0xFF2D2D2D),
-            onPressed: () {},
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: AppIconButton(
+              icon: Icons.filter_list,
+              iconColor: PodColors.textColor,
+              onPressed: () {},
+              backgroundColor: PodColors.transparentColor,
+              borderColor: PodColors.transparentColor,
+            ),
           ),
         ],
       ),
@@ -48,7 +56,7 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
       sliver: SliverToBoxAdapter(
         child: Container(
           decoration: BoxDecoration(
@@ -59,9 +67,8 @@ class SearchField extends StatelessWidget {
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.search),
               hintText: AppAssets.searchPodcasts,
-              border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-              ),
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.all(16),
             ),
           ),
         ),
@@ -114,18 +121,14 @@ class CategoryItem extends StatelessWidget {
           children: [
             Text(
               category.category,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+              style: PodTextStyles.bodyLarge.copyWith(
                 color: category.textColor,
               ),
             ),
             const AppSpacer(width: 8),
             Text(
               category.podcastCount,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
+              style: PodTextStyles.bodyMedium.copyWith(
                 color: category.textColor,
               ),
             ),
@@ -191,24 +194,21 @@ class PodCastItem extends StatelessWidget {
                     children: [
                       Text(
                         podcast.podcastHost!,
-                        style: const TextStyle(
-                          fontSize: 12,
+                        style: PodTextStyles.bodySmall.copyWith(
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       const AppSpacer(height: 4),
                       Text(
                         podcast.podCastName,
-                        style: const TextStyle(
-                          fontSize: 14,
+                        style: PodTextStyles.bodyMedium.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                       const AppSpacer(height: 4),
                       Text(
                         podcast.podcastDescription!,
-                        style: const TextStyle(
-                          fontSize: 14,
+                        style: PodTextStyles.bodyMedium.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
                         maxLines: 2,
@@ -217,9 +217,8 @@ class PodCastItem extends StatelessWidget {
                       const AppSpacer(height: 4),
                       Text(
                         '• ${podcast.podcastTime!} min',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
+                        style: PodTextStyles.bodySmall.copyWith(
+                          color: PodColors.textColor.withValues(alpha: .6),
                         ),
                       ),
                     ],
@@ -229,10 +228,12 @@ class PodCastItem extends StatelessWidget {
             ),
           ),
           const AppSpacer(width: 6),
-          IconButton(
-            style: IconButton.styleFrom(backgroundColor: Colors.teal),
+          AppIconButton(
+            icon: Icons.play_arrow,
             onPressed: () {},
-            icon: const Icon(Icons.play_arrow, color: Colors.white),
+            backgroundColor: PodColors.tealColor,
+            iconColor: PodColors.whiteColor,
+            borderColor: PodColors.transparentColor,
           ),
         ],
       ),

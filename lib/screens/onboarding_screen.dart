@@ -2,8 +2,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:podstream/local_data/onboarding_data.dart';
-import 'package:podstream/utils/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_colors.dart';
+import 'package:podstream/utils/constants/pod_text_styles.dart';
 import 'package:podstream/utils/shared_prefs.dart';
+import 'package:podstream/widgets/buttons.dart';
 import 'package:podstream/widgets/spacers.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -26,7 +29,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
     return Scaffold(
       body: Container(
-        color: Colors.teal,
+        color: PodColors.tealColor,
         height: size.height,
         width: size.width,
         child: Stack(
@@ -105,7 +108,7 @@ class _OnboardingInfo extends StatelessWidget {
         width: size.width,
         height: 340,
         decoration: const BoxDecoration(
-          color: Colors.white,
+          color: PodColors.whiteColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(36),
             topRight: Radius.circular(36),
@@ -120,43 +123,35 @@ class _OnboardingInfo extends StatelessWidget {
                     !isLastPage
                         ? Align(
                           alignment: Alignment.topRight,
-                          child: TextButton(
+                          child: AppTextButton(
                             onPressed: onSkip,
                             child: Text(
                               AppAssets.skipText,
-                              style: TextStyle(
-                                color: const Color(
-                                  0xFF2D2D2D,
-                                ).withValues(alpha: 0.5),
+                              style: PodTextStyles.textStyle.copyWith(
+                                color: PodColors.textColor.withValues(
+                                  alpha: 0.5,
+                                ),
                               ),
                             ),
                           ),
                         )
                         : Align(
                           alignment: Alignment.topRight,
-                          child: TextButton(
+                          child: AppTextButton(
                             onPressed: onSkip,
                             child: const SizedBox.shrink(),
                           ),
                         ),
               ),
               const AppSpacer(height: 8),
-              Text(
-                page.title,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF2D2D2D),
-                ),
-              ),
+              Text(page.title, style: PodTextStyles.header1),
               const AppSpacer(height: 16),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
                   page.description,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Color(0xFF2D2D2D),
+                  style: PodTextStyles.bodyLarge.copyWith(
+                    fontWeight: FontWeight.w400,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -169,29 +164,9 @@ class _OnboardingInfo extends StatelessWidget {
               const AppSpacer(height: 36),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton.icon(
-                  icon: const Icon(
-                    Icons.arrow_forward,
-                    color: Colors.white,
-                    size: 22,
-                  ),
-                  iconAlignment: IconAlignment.end,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
+                child: AppIconElevatedButton(
                   onPressed: isLastPage ? onSkip : onNext,
-                  label: Text(
-                    isLastPage ? AppAssets.getStarted : AppAssets.next,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                  title: isLastPage ? AppAssets.getStarted : AppAssets.next,
                 ),
               ),
             ],
@@ -226,7 +201,10 @@ class _OnboardingDots extends StatelessWidget {
             height: 12.0,
             margin: const EdgeInsets.symmetric(horizontal: 4.0),
             decoration: BoxDecoration(
-              color: isActive ? Colors.teal : Colors.grey.shade400,
+              color:
+                  isActive
+                      ? PodColors.tealColor
+                      : PodColors.textColor.withValues(alpha: .2),
               borderRadius: BorderRadius.circular(8),
             ),
           ),

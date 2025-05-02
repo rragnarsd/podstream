@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:podstream/local_data/profile_data.dart';
-import 'package:podstream/utils/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_colors.dart';
+import 'package:podstream/utils/constants/pod_text_styles.dart';
+import 'package:podstream/widgets/buttons.dart';
 import 'package:podstream/widgets/spacers.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -16,9 +19,17 @@ class ProfileScreen extends StatelessWidget {
             expandedHeight: 250,
             pinned: true,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            iconTheme: const IconThemeData(color: Color(0xFF2D2D2D)),
+            iconTheme: const IconThemeData(color: PodColors.textColor),
             actions: [
-              IconButton(icon: const Icon(Icons.more_horiz), onPressed: () {}),
+              Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: AppIconButton(
+                  icon: Icons.more_horiz,
+                  onPressed: () {},
+                  backgroundColor: PodColors.transparentColor,
+                  borderColor: PodColors.transparentColor,
+                ),
+              ),
             ],
             flexibleSpace: const ProfileSpaceBar(),
           ),
@@ -59,30 +70,14 @@ class ProfileSpaceBar extends StatelessWidget {
               backgroundImage: AssetImage(AppAssets.avatar1),
             ),
             const AppSpacer(height: 10),
-            const Text(
-              AppAssets.userName,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
+            const Text(AppAssets.userName, style: PodTextStyles.bodyXLarge),
             const AppSpacer(height: 4),
-            const Text(AppAssets.userEmail, style: TextStyle(fontSize: 14)),
+            const Text(AppAssets.userEmail, style: PodTextStyles.bodyMedium),
             const AppSpacer(height: 12),
-            OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                side: const BorderSide(width: 3),
-                backgroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 12,
-                ),
-              ),
+            AppOutlinedButton(
+              title: AppAssets.getPremium,
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               onPressed: () => context.push('/premium'),
-              child: const Text(
-                AppAssets.getPremium,
-                style: TextStyle(color: Color(0xFF2D2D2D), fontSize: 16),
-              ),
             ),
           ],
         ),
@@ -102,7 +97,7 @@ class ProfileListItem extends StatelessWidget {
       leading: item.icon,
       title: Text(
         item.title,
-        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        style: PodTextStyles.bodyLarge.copyWith(fontWeight: FontWeight.w500),
       ),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       trailing: const Icon(Icons.chevron_right),

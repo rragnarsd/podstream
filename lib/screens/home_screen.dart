@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:podstream/local_data/subscribe_data.dart';
 import 'package:podstream/local_data/trending_data.dart';
-import 'package:podstream/utils/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_colors.dart';
+import 'package:podstream/utils/constants/pod_text_styles.dart';
+import 'package:podstream/widgets/buttons.dart';
 import 'package:podstream/widgets/spacers.dart';
 import 'package:podstream/widgets/text_headers.dart';
 
@@ -110,20 +113,12 @@ class _TrendingItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF2D2D2D),
-                ),
-              ),
+              Text(title, style: PodTextStyles.bodyLarge),
               const AppSpacer(height: 4),
               Text(
                 host,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: const Color(0xFF2D2D2D).withValues(alpha: .6),
+                style: PodTextStyles.bodyMedium.copyWith(
+                  color: PodColors.textColor.withValues(alpha: .6),
                 ),
               ),
               const AppSpacer(height: 12),
@@ -151,11 +146,11 @@ class _PlayButton extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: PodColors.whiteColor,
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: Colors.white.withValues(alpha: .2),
+            color: PodColors.whiteColor.withValues(alpha: .2),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
@@ -167,22 +162,20 @@ class _PlayButton extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(6),
             decoration: const BoxDecoration(
-              color: Color(0xFF2D2D2D),
+              color: PodColors.textColor,
               shape: BoxShape.circle,
             ),
             child: const Icon(
               Icons.play_arrow,
-              color: Colors.white,
+              color: PodColors.whiteColor,
               size: 16.0,
             ),
           ),
           const AppSpacer(width: 8),
           Text(
             duration,
-            style: const TextStyle(
-              fontSize: 14,
+            style: PodTextStyles.bodyMedium.copyWith(
               fontWeight: FontWeight.w600,
-              color: Color(0xFF2D2D2D),
             ),
           ),
         ],
@@ -239,7 +232,6 @@ class _RecommendedItem extends StatelessWidget {
             height: 200,
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: const Color(0xFFD7F0E3),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(width: 3),
               image: DecorationImage(
@@ -258,11 +250,7 @@ class _RecommendedItem extends StatelessWidget {
             width: 220,
             child: Text(
               subAuthorData.podcastDescription ?? '',
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: Color(0xFF2D2D2D),
-              ),
+              style: PodTextStyles.bodyLarge,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -341,24 +329,15 @@ class _RecentlyPlayedItem extends StatelessWidget {
                     children: [
                       Text(
                         podcast.podcastHost!,
-                        style: const TextStyle(
-                          fontSize: 12,
+                        style: PodTextStyles.bodySmall.copyWith(
                           fontWeight: FontWeight.w500,
                         ),
                       ),
 
-                      Text(
-                        podcast.podCastName,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-
+                      Text(podcast.podCastName, style: PodTextStyles.bodyLarge),
                       Text(
                         podcast.podcastDescription!,
-                        style: const TextStyle(
-                          fontSize: 14,
+                        style: PodTextStyles.bodyMedium.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
                         maxLines: 2,
@@ -367,9 +346,8 @@ class _RecentlyPlayedItem extends StatelessWidget {
 
                       Text(
                         '• ${podcast.podcastTime!}',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
+                        style: PodTextStyles.bodySmall.copyWith(
+                          color: PodColors.textColor.withValues(alpha: .6),
                         ),
                       ),
                     ],
@@ -379,10 +357,12 @@ class _RecentlyPlayedItem extends StatelessWidget {
             ),
           ),
           const AppSpacer(width: 6),
-          IconButton(
-            style: IconButton.styleFrom(backgroundColor: Colors.teal),
+          AppIconButton(
+            icon: Icons.play_arrow,
             onPressed: () {},
-            icon: const Icon(Icons.play_arrow, color: Colors.white),
+            backgroundColor: PodColors.tealColor,
+            iconColor: PodColors.whiteColor,
+            borderColor: PodColors.transparentColor,
           ),
         ],
       ),

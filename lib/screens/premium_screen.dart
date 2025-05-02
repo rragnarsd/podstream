@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:podstream/utils/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_assets.dart';
+import 'package:podstream/utils/constants/pod_colors.dart';
+import 'package:podstream/utils/constants/pod_text_styles.dart';
+import 'package:podstream/widgets/buttons.dart';
 import 'package:podstream/widgets/spacers.dart';
 
 class PremiumScreen extends StatelessWidget {
@@ -14,27 +17,20 @@ class PremiumScreen extends StatelessWidget {
           AppAssets.subscribeToPremium,
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 18),
-          color: const Color(0xFF2D2D2D),
+        leading: AppIconButton(
+          icon: Icons.arrow_back_ios_new_rounded,
+          iconSize: 20,
+          iconColor: const Color(0xFF2D2D2D),
           onPressed: () => context.pop(),
+          backgroundColor: PodColors.transparentColor,
+          borderColor: PodColors.transparentColor,
         ),
       ),
       body: CustomScrollView(
         slivers: [
-          //TODO
-          const SliverPadding(
-            padding: EdgeInsets.only(bottom: 16, left: 16, right: 16),
+          SliverPadding(
+            padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
             sliver: SliverToBoxAdapter(
-              child: Text(
-                AppAssets.enjoyPodcasts,
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
                   SubscriptionCard(
@@ -82,10 +78,13 @@ class SubscriptionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
         side: BorderSide(
           width: 3,
-          color: isSelected ? Colors.teal : Colors.grey,
+          color:
+              isSelected
+                  ? PodColors.tealColor
+                  : PodColors.textColor.withValues(alpha: .2),
         ),
       ),
-      color: Colors.white,
+      color: PodColors.whiteColor,
       child: Column(
         children: [
           const AppSpacer(height: 24),
@@ -93,17 +92,18 @@ class SubscriptionCard extends StatelessWidget {
             decoration: BoxDecoration(
               color:
                   isSelected
-                      ? Colors.teal
-                      : const Color(0xFF2d2d2d).withValues(alpha: .2),
+                      ? PodColors.tealColor
+                      : PodColors.textColor.withValues(alpha: .2),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Text(
                 title,
-                style: TextStyle(
+                style: PodTextStyles.textStyle.copyWith(
+                  color:
+                      isSelected ? PodColors.whiteColor : PodColors.textColor,
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-                  color: isSelected ? Colors.white : const Color(0xFF2D2D2D),
                 ),
               ),
             ),
@@ -114,10 +114,7 @@ class SubscriptionCard extends StatelessWidget {
             width: 100,
             child: Image.asset(AppAssets.premiumTriangle),
           ),
-          Text(
-            price,
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
+          Text(price, style: PodTextStyles.header1),
           const Divider(
             indent: 16,
             endIndent: 16,
@@ -132,14 +129,16 @@ class SubscriptionCard extends StatelessWidget {
                   Icon(
                     Icons.check_circle_outline,
                     size: 24,
-                    color: isSelected ? Colors.teal : Colors.grey,
+                    color:
+                        isSelected
+                            ? PodColors.tealColor
+                            : PodColors.textColor.withValues(alpha: .2),
                   ),
                   const AppSpacer(width: 8),
                   Expanded(
                     child: Text(
                       feature,
-                      style: TextStyle(
-                        fontSize: 16,
+                      style: PodTextStyles.bodyLarge.copyWith(
                         fontWeight:
                             feature == '+ ${AppAssets.everythingInStarter}'
                                 ? FontWeight.bold
