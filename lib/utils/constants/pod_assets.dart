@@ -14,6 +14,8 @@ class AppAssets {
   static const String avatar12 = 'assets/images/avatar12.png';
   static const String avatar13 = 'assets/images/avatar13.png';
 
+  static const String wave = 'assets/images/waves.png';
+
   // Logos
   static const String premiumTriangle = 'assets/logos/podstream_triangles.png';
   static const String logo = 'assets/logos/podstream_logo.png';
@@ -77,4 +79,12 @@ class AppAssets {
   static const String podStream = 'PodStream';
   static const String creativeChronicles = 'Creative Chronicles';
   static const String hostName = 'Diana Rose';
+
+  static const String host = 'Miss Sarah';
+  static const String podcastName = 'Health & Wellness Podcast';
+  static const String followButton = 'Follow';
+  static const String allEpisodes = 'All Episodes';
+
+  static const String timeOne = '18:35';
+  static const String timeTwo = '40:20';
 }

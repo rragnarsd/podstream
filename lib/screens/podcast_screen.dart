@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:podstream/screens/search_screen.dart';
+import 'package:podstream/utils/constants/pod_assets.dart';
 import 'package:podstream/utils/constants/pod_colors.dart';
 import 'package:podstream/utils/constants/pod_text_styles.dart';
 import 'package:podstream/widgets/buttons.dart';
@@ -47,9 +48,7 @@ class _PodcastScreenState extends State<PodcastScreen>
     if (_scrollController.hasClients) {
       final bool isCollapsed = _scrollController.offset > 100;
       if (isCollapsed != _isCollapsed) {
-        setState(() {
-          _isCollapsed = isCollapsed;
-        });
+        setState(() => _isCollapsed = isCollapsed);
         if (isCollapsed) {
           _animationController.forward();
         } else {
@@ -111,7 +110,7 @@ class _PodcastScreenState extends State<PodcastScreen>
                     duration: const Duration(milliseconds: 200),
                     opacity: _isCollapsed ? 1.0 : 0.0,
                     child: Text(
-                      'Liliy\'s wellness',
+                      AppAssets.host,
                       style: PodTextStyles.header2.copyWith(
                         color: PodColors.whiteColor,
                       ),
@@ -122,9 +121,12 @@ class _PodcastScreenState extends State<PodcastScreen>
                     child: Stack(
                       fit: StackFit.expand,
                       children: [
-                        Image.asset(
-                          'assets/images/avatar1.png',
-                          fit: BoxFit.cover,
+                        Hero(
+                          tag: AppAssets.avatar1,
+                          child: Image.asset(
+                            AppAssets.avatar1,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -149,13 +151,13 @@ class _PodcastScreenState extends State<PodcastScreen>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Liliy\'s wellness',
+                                    AppAssets.host,
                                     style: PodTextStyles.header1.copyWith(
                                       color: PodColors.whiteColor,
                                     ),
                                   ),
                                   Text(
-                                    'Health & Wellness Podcast',
+                                    AppAssets.podcastName,
                                     style: PodTextStyles.bodyLarge.copyWith(
                                       color: PodColors.whiteColor.withValues(
                                         alpha: .6,
@@ -170,7 +172,7 @@ class _PodcastScreenState extends State<PodcastScreen>
                                   return Opacity(
                                     opacity: 1 - _animation.value,
                                     child: AppIconButtonOutlined(
-                                      title: 'Follow',
+                                      title: AppAssets.followButton,
                                       icon: Icons.person_add_alt,
                                       onPressed: () {},
                                     ),
@@ -188,6 +190,7 @@ class _PodcastScreenState extends State<PodcastScreen>
               const SliverAppSpacer(height: 24),
               const SliverAppTextHeader(title: 'All Episodes'),
               const SliverAppSpacer(height: 8),
+              //TODO - Modify podcast screen
               const PodcastList(),
               const SliverAppSpacer(height: 24),
             ],

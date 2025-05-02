@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:podstream/screens/home_screen.dart';
 import 'package:podstream/screens/interest_screen.dart';
 import 'package:podstream/screens/onboarding_screen.dart';
+import 'package:podstream/screens/podcast_play_screen.dart';
 import 'package:podstream/screens/podcast_screen.dart';
 import 'package:podstream/screens/premium_screen.dart';
 import 'package:podstream/screens/search_screen.dart';
@@ -83,6 +84,13 @@ final GoRouter router = GoRouter(
           },
         ),
       ],
+    ),
+    GoRoute(
+      path: '/podcast/play',
+      name: 'play',
+      builder: (BuildContext context, GoRouterState state) {
+        return const PodcastPlayScreen();
+      },
     ),
   ],
 );

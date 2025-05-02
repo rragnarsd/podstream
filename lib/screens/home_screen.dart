@@ -227,16 +227,19 @@ class _RecommendedItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 220,
-            height: 200,
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(width: 3),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(subAuthorData.image),
+          Hero(
+            tag: subAuthorData.image,
+            child: Container(
+              width: 220,
+              height: 200,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(width: 3),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(subAuthorData.image),
+                ),
               ),
             ),
           ),
@@ -297,74 +300,80 @@ class _RecentlyPlayedItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Row(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(width: 3),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(4),
-                    child: Image.asset(
-                      podcast.image,
-                      height: 100,
-                      width: 100,
-                      fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () => context.push('/podcast/play'),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(width: 3),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(4),
+                      child: Image.asset(
+                        podcast.image,
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
-                const AppSpacer(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    spacing: 4,
-                    children: [
-                      Text(
-                        podcast.podcastHost!,
-                        style: PodTextStyles.bodySmall.copyWith(
-                          fontWeight: FontWeight.w500,
+                  const AppSpacer(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      spacing: 4,
+                      children: [
+                        Text(
+                          podcast.podcastHost!,
+                          style: PodTextStyles.bodySmall.copyWith(
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ),
 
-                      Text(podcast.podCastName, style: PodTextStyles.bodyLarge),
-                      Text(
-                        podcast.podcastDescription!,
-                        style: PodTextStyles.bodyMedium.copyWith(
-                          fontWeight: FontWeight.w600,
+                        Text(
+                          podcast.podCastName,
+                          style: PodTextStyles.bodyLarge,
                         ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                        Text(
+                          podcast.podcastDescription!,
+                          style: PodTextStyles.bodyMedium.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
 
-                      Text(
-                        '• ${podcast.podcastTime!}',
-                        style: PodTextStyles.bodySmall.copyWith(
-                          color: PodColors.textColor.withValues(alpha: .6),
+                        Text(
+                          '• ${podcast.podcastTime!}',
+                          style: PodTextStyles.bodySmall.copyWith(
+                            color: PodColors.textColor.withValues(alpha: .6),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const AppSpacer(width: 6),
-          AppIconButton(
-            icon: Icons.play_arrow,
-            onPressed: () {},
-            backgroundColor: PodColors.tealColor,
-            iconColor: PodColors.whiteColor,
-            borderColor: PodColors.transparentColor,
-          ),
-        ],
+            const AppSpacer(width: 6),
+            AppIconButton(
+              icon: Icons.play_arrow,
+              onPressed: () {},
+              backgroundColor: PodColors.tealColor,
+              iconColor: PodColors.whiteColor,
+              borderColor: PodColors.transparentColor,
+            ),
+          ],
+        ),
       ),
     );
   }
