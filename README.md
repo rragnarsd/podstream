@@ -1,16 +1,11 @@
-# podstream
+# Podstream
 
 A new Flutter project.
+//TOOD - Add images
+//TODO - Add link to the original design
 
 ## Getting Started
+Link to a video: [Click here](https://www.canva.com/design/DAGmTZ-7iuU/jEGlz2IdyXsi2du-4D6Hyw/watch?utm_content=DAGmTZ-7iuU&utm_campaign=share_your_design&utm_medium=link2&utm_source=shareyourdesignpanel).
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
