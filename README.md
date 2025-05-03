@@ -23,4 +23,6 @@
 ![PodStream](https://github.com/rragnarsd/school_app/blob/cd63195302168525fa627096f52cd33d6fd7c927/podstream.jpg)
 
 ## Live preview
-Link to a video: [Click here](https://www.canva.com/design/DAGmTZ-7iuU/jEGlz2IdyXsi2du-4D6Hyw/watch?utm_content=DAGmTZ-7iuU&utm_campaign=share_your_design&utm_medium=link2&utm_source=shareyourdesignpanel).
+Download the preview: https://github.com/rragnarsd/school_app/raw/refs/heads/main/podstream.mp4
+
+Link to presentation: [Click here](https://www.canva.com/design/DAGmTZ-7iuU/jEGlz2IdyXsi2du-4D6Hyw/watch?utm_content=DAGmTZ-7iuU&utm_campaign=share_your_design&utm_medium=link2&utm_source=shareyourdesignpanel).
