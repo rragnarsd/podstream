@@ -11,6 +11,7 @@ class PodcastPlayScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      extendBody: true,
       body: Column(children: [_TopImageSection(), _PodcastDetailsSection()]),
     );
   }
@@ -21,10 +22,11 @@ class _TopImageSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     return Stack(
       children: [
         Container(
-          height: MediaQuery.sizeOf(context).height * .64,
+          height: size.height * .64,
           width: double.infinity,
           decoration: const BoxDecoration(
             image: DecorationImage(
@@ -49,7 +51,7 @@ class _TopImageSection extends StatelessWidget {
           bottom: 24,
           right: 24,
           child: Container(
-            width: MediaQuery.sizeOf(context).width * .4,
+            width: size.width * .4,
             decoration: BoxDecoration(
               border: Border.all(width: 3),
               borderRadius: BorderRadius.circular(4),

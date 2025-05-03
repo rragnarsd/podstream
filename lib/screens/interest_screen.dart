@@ -115,7 +115,8 @@ class OnboardingButtonBar extends StatelessWidget {
                 onPressed: () async {
                   await SharedPrefs.setOnboardingSeen();
                   if (!context.mounted) return;
-                  context.pushReplacement('/onboarding/interests');
+                  //Todo
+                  context.go(routePath);
                 },
                 title: AppAssets.skipText,
               ),

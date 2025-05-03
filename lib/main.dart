@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
             displayColor: PodColors.textColor,
           ),
         ),
-
         useMaterial3: true,
       ),
       routerConfig: router,

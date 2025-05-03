@@ -66,7 +66,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   void _handleSkip() async {
     await SharedPrefs.setOnboardingSeen();
     if (mounted) {
-      context.pushReplacement('/onboarding/interests');
+      context.go('/onboarding/interests');
     }
   }
 
@@ -74,7 +74,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     if (_activePage == onboardingData.length - 1) {
       await SharedPrefs.setOnboardingSeen();
       if (mounted) {
-        context.pushReplacement('/onboarding/interests');
+        context.go('/onboarding/interests');
       }
     } else {
       carouselController.animateToPage(_activePage + 1);

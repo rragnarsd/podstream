@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:podstream/local_data/subscribe_data.dart';
 import 'package:podstream/local_data/trending_data.dart';
+import 'package:podstream/routes/app_router.dart';
 import 'package:podstream/utils/constants/pod_assets.dart';
 import 'package:podstream/utils/constants/pod_colors.dart';
 import 'package:podstream/utils/constants/pod_text_styles.dart';
@@ -223,7 +224,8 @@ class _RecommendedItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.push('/podcast'),
+      //Todo
+      onTap: () => context.push(AppRoute.podcast.path),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -301,7 +303,8 @@ class _RecentlyPlayedItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.push('/podcast/play'),
+      //Todo
+      onTap: () => context.push(AppRoute.play.path),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12),
         child: Row(

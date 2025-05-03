@@ -12,6 +12,47 @@ import 'package:podstream/screens/subscribe_screen.dart';
 import 'package:podstream/root.dart';
 import 'package:podstream/utils/shared_prefs.dart';
 
+enum AppRoute {
+  onboarding,
+  interests,
+  subscribe,
+  home,
+  search,
+  podcast,
+  profile,
+  premium,
+  play,
+}
+
+extension AppRouteExtension on AppRoute {
+  String get path => switch (this) {
+    AppRoute.onboarding => '/onboarding',
+    AppRoute.interests => 'interests',
+    AppRoute.subscribe => 'subscribe',
+    AppRoute.home => '/',
+    AppRoute.search => '/search',
+    AppRoute.podcast => '/podcast',
+    AppRoute.profile => '/profile',
+    AppRoute.premium => '/premium',
+    AppRoute.play => '/podcast/play',
+  };
+
+  String get name => toString().split('.').last;
+}
+
+GoRoute buildRoute(
+  AppRoute route,
+  Widget screen, {
+  List<GoRoute> routes = const [],
+}) {
+  return GoRoute(
+    path: route.path,
+    name: route.name,
+    builder: (BuildContext context, GoRouterState state) => screen,
+    routes: routes,
+  );
+}
+
 final GoRouter router = GoRouter(
   initialLocation: '/',
   redirect: (context, state) async {
@@ -22,75 +63,26 @@ final GoRouter router = GoRouter(
     return null;
   },
   routes: <RouteBase>[
-    GoRoute(
-      path: '/onboarding',
-      name: 'onboarding',
-      builder: (BuildContext context, GoRouterState state) {
-        return const OnboardingScreen();
-      },
-    ),
-    GoRoute(
-      path: '/onboarding/interests',
-      name: 'interests',
-      builder: (BuildContext context, GoRouterState state) {
-        return const InterestScreen();
-      },
-    ),
-    GoRoute(
-      path: '/onboarding/subscribe',
-      name: 'subscribe',
-      builder: (BuildContext context, GoRouterState state) {
-        return const SubscribeScreen();
-      },
+    buildRoute(
+      AppRoute.onboarding,
+      const OnboardingScreen(),
+      routes: [
+        buildRoute(AppRoute.interests, const InterestScreen()),
+        buildRoute(AppRoute.subscribe, const SubscribeScreen()),
+      ],
     ),
     ShellRoute(
       builder: (BuildContext context, GoRouterState state, Widget child) {
         return Root(child: child);
       },
       routes: [
-        GoRoute(
-          path: '/',
-          name: 'home',
-          builder: (BuildContext context, GoRouterState state) {
-            return const HomeScreen();
-          },
-        ),
-        GoRoute(
-          path: '/search',
-          name: 'search',
-          builder: (BuildContext context, GoRouterState state) {
-            return const SearchScreen();
-          },
-        ),
-        GoRoute(
-          path: '/podcast',
-          name: 'podcast',
-          builder: (BuildContext context, GoRouterState state) {
-            return const PodcastScreen();
-          },
-        ),
-        GoRoute(
-          path: '/profile',
-          name: 'profile',
-          builder: (BuildContext context, GoRouterState state) {
-            return const ProfileScreen();
-          },
-        ),
-        GoRoute(
-          path: '/premium',
-          name: 'premium',
-          builder: (BuildContext context, GoRouterState state) {
-            return const PremiumScreen();
-          },
-        ),
+        buildRoute(AppRoute.home, const HomeScreen()),
+        buildRoute(AppRoute.search, const SearchScreen()),
+        buildRoute(AppRoute.podcast, const PodcastScreen()),
+        buildRoute(AppRoute.profile, const ProfileScreen()),
+        buildRoute(AppRoute.premium, const PremiumScreen()),
       ],
     ),
-    GoRoute(
-      path: '/podcast/play',
-      name: 'play',
-      builder: (BuildContext context, GoRouterState state) {
-        return const PodcastPlayScreen();
-      },
-    ),
+    buildRoute(AppRoute.play, const PodcastPlayScreen()),
   ],
 );
