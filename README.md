@@ -17,8 +17,7 @@
 - Logo made in **Canva**
 - Color palette:
 
-![image_alt](https://github.com/rragnarsd/school_app/blob/b52ba1f8d6174cdeace7a60ce834533652126436/pod_colorpalette.png)
-
+![Color Palette Mood board Instagram Post (2)](https://github.com/user-attachments/assets/fdaa8780-fdf2-4e47-b333-2d0ff0753961)
 
 https://github.com/user-attachments/assets/4f5de0e0-e842-47d6-8e02-b9396498aad7
 
